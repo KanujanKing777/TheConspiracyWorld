@@ -1,0 +1,9 @@
+#msgInput{
+    width: 77%;
+}
+@media(max-width:900px){
+    #msgInput{
+        width: 70%;
+    }
+    
+}

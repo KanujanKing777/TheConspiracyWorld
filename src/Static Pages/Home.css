@@ -1,0 +1,21 @@
+#background-video {
+    object-fit: cover;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    /* optional depending on what you want to do in your app */
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
+.fun{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.startP {
+    font-size: 8vh;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

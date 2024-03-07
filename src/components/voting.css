@@ -1,0 +1,19 @@
+#oppose {
+    width: 40vw;
+}
+
+#support {
+    width: 40vw;
+}
+
+.support {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oppose {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

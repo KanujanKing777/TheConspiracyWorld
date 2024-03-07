@@ -1,0 +1,78 @@
+.postbox {
+    display: flex;
+    justify-content: center;
+}
+
+/* PostTabs.css */
+.post-box {
+    max-height: max-content;
+}
+
+.tabContent {
+    padding: 10px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.post-contentx {
+    padding: 5px;
+    text-align: justify;
+    overflow-y: auto;
+    max-height: 55vh; 
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-size: calc(5px + 3vmin);
+}
+
+.tab:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tabc {
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.a {
+    color: #3498db;
+    /* Default link color */
+    text-decoration: none;
+    /* Remove underline by default */
+    transition: color 0.3s ease;
+    /* Smooth color transition on hover */
+}
+
+/* Style for visited links */
+.a:visited {
+    color: #9b59b6;
+    /* Visited link color */
+}
+
+/* Style for hovered links */
+.a:hover {
+    color: #2ecc71;
+    /* Hovered link color */
+}
+
+/* Style for active/focused links */
+.a:active,
+.a:focus {
+    color: #e74c3c;
+    /* Active/focused link color */
+}
+
+.active {
+    border-bottom: 0.1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.3);
+}

@@ -1,0 +1,77 @@
+.body {
+    background-color: #121212;
+    color: white;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    overflow-y: auto;
+}
+
+.form {
+    margin:5vh;
+    margin-top: 5vh;
+    padding: 3vw;
+    border: 1px solid white;
+    border-radius: 3px;
+    width: 45vw;
+    scrollbar-width: thin;
+}
+#ref-in{
+    width: 90%;
+    margin-right: 1%;
+}
+@media(max-width:900px) {
+    .form {
+        width: 100vw
+    }
+    
+}
+
+.text-input {
+    margin-left: 0.5vw;
+}
+
+.Title {
+    display: flex;
+}
+
+textarea {
+    width: 99%;
+    height: 30vh;
+    resize: none;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.Post {
+}
+.add{
+    width: 38px;
+    height: auto;
+}
+input:focus {
+    border: none;
+    outline: none;
+}
+
+textarea:focus {
+    border: none;
+    outline: none;
+}
+#refp{
+    height: auto;
+    background-color: #121212;
+    color: white;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: none;
+    outline: none;
+    padding:3px;
+    margin-left: 1vw;
+    margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-left:0.5vw;
+    margin-right: 0.5vw;
+    border-radius: 7px;
+    padding: 1px;
+}

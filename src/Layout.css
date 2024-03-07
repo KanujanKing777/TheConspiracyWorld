@@ -1,0 +1,100 @@
+/* You can adjust these styles based on your design preferences */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1vw 2vw;
+  /* Adjust padding as needed */
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.App-logo {
+  width: 7vh;
+  /* Adjust the width as needed */
+  height: auto;
+  /* Maintain aspect ratio */
+  margin-right: 1vw;
+  /* Adjust margin as needed */
+}
+
+.h1 {
+  margin: 0;
+  /* Remove default margin for h1 */
+  color: white;
+  font-size: 2vw;
+  font-weight: 500;
+}
+
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-item {
+  /* Adjust margin between items as needed */
+  margin:1vh;
+  font-size: 1.7vw;
+}
+@media(max-width:900px) {
+  .h1{
+    font-size: 3.5vw;
+  }
+  .App-logo{
+    width: 5vh;
+  }
+  .nav-item{
+    width: 13vw;
+    margin:1vw;
+  }
+  .nav-link{
+    font-size: 3vw;
+    width: 13vw;
+  }
+  .log{
+    padding-top: 1vh;
+  }
+  
+}
+
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  /* Example link color */
+  padding: 2vh;
+
+}
+
+
+.try{
+  width: 9vw;
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 1vh;
+
+  text-align: center;
+}
+.try:hover{
+  width: 11vw;
+  background-color: white;
+  #trytext {
+    color:black;
+  }
+  #trytext::after{
+    content: '✨';
+  }
+}
+
