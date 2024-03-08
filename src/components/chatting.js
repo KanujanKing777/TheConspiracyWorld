@@ -63,12 +63,13 @@ const ChatComponent = ({data, user}) => {
                     const opposeChats = docSnap.data()['OpposeChats'];
                     
                     const fetchedSupposeMessages = await Promise.all(supposeChats.map(bigUser));
-                    console.log(fetchedSupposeMessages);
 
                     const fetchedOpposeMessages = await Promise.all(opposeChats.map(bigUser));
-                    console.log(fetchedOpposeMessages);
 
                     const allMessages = [...fetchedSupposeMessages, ...fetchedOpposeMessages];
+                    if(allMessages.length === 0){
+                        document.getElementById('chatboxi').style.height = '1vh';
+                    }
                     setMessages(allMessages);
                 }
             } catch (error) {
@@ -87,7 +88,6 @@ const ChatComponent = ({data, user}) => {
 
     const handleSendMessage = async () => {
         if (newMessage.trim() === '') return;
-        console.log('messages', messages);
         setMessages([...messages, { text: newMessage, sender: 'me' }]);
         setNewMessage('');
         if (supposeIs) {
@@ -99,7 +99,8 @@ const ChatComponent = ({data, user}) => {
                         UserId: user
                     }), // Replace with the field you want to update and its new value
                 });
-                console.log(user, 'Document successfully updated!');
+                console.log('Message sent!');
+                document.getElementById('chatboxi').style.height = '40vh';
             } catch (error) {
                 console.error('Error updating document: ', error);
             }
@@ -113,8 +114,8 @@ const ChatComponent = ({data, user}) => {
                         UserId: user
                     }), // Replace with the field you want to update and its new value
                 });
-
-                console.log(user, 'Document successfully updated!');
+                document.getElementById('chatboxi').style.height = '40vh';
+                console.log(user, 'Message sent!');
             } catch (error) {
                 console.error('Error updating document: ', error);
             }
@@ -136,6 +137,7 @@ const ChatComponent = ({data, user}) => {
                     scrollbarWidth: 'thin',
                     scrollbarColor: '#F2F2F2 transparent',
                 }}
+                id='chatboxi'
                 ref={messagesRef}
                 className={`scrollable-container scrolling`}
             >
