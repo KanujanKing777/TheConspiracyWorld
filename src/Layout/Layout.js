@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './Layout.css'; // Create a separate CSS file for styling
 
 const Layout = () => {
