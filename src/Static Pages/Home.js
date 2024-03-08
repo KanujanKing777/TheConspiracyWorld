@@ -1,6 +1,6 @@
 import '../App.css';
-import Layout from '../Layout';
-import background from '../background.mp4';
+import Layout from '../Layout/Layout';
+import background from '../Media/background.mp4';
 import './Home.css';
 import HomePageContent from './homecontent';
 function Home() {

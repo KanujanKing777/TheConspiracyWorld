@@ -3,7 +3,7 @@
   .home-container {
     width: 100%;
     box-sizing: border-box;
-    background-color: rgba(12, 12, 12, 0.85);
+    background-color: rgba(12, 12, 12, 0.8);
     color: #ffffff;
     margin: 0;
     flex-wrap: wrap;
@@ -79,8 +79,8 @@
     font-size: 100%;
   }
   .imgPic {
-    width: 100%;
-    height: 75vh;
+    width: 100vw;
+    height: 50vh;
     display: block;
   }
   #pyramid{

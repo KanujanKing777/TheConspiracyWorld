@@ -3,7 +3,7 @@ import { collection, query, getDocs, limit } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import './newHome.css';
-import Layout2 from "./Layout2";
+import Layout2 from "./Layout/Layout2";
 import { useNavigate, useLocation } from "react-router-dom";
 import FloatingButton from "./components/floatingButton";
 
@@ -20,7 +20,7 @@ const firebaseConfig = {
   const app = initializeApp(firebaseConfig);
   const firestore = getFirestore(app);
     
-const q = query(collection(firestore, "posts"), limit(7));
+const q = query(collection(firestore, "posts"), limit(5));
 const querySnapshot = await getDocs(q);
 var array = [];
 querySnapshot.forEach((doc) => {

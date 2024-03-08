@@ -7,7 +7,7 @@ const Layout = () => {
 
       <nav className="navbar">
         <div className="left-section">
-          <img src='/yinyang.png' className='App-logo' alt='logo' />
+          <img src='/yinyang.png' className='App-logo applogo' id="logoof" alt='logo' />
           <h1 className="h1">The Conspiracy World</h1>
       </div>
 
@@ -19,7 +19,7 @@ const Layout = () => {
             </li>
           </div>
           <div >
-            <li className="nav-item try">
+            <li className="nav-item try" id="trynow">
               <Link to="/signup" className="nav-link" id="trytext">Try</Link>
             </li>
           </div>

@@ -15,7 +15,7 @@ const HomePageContent = () => {
           </div>
           <div className="rightC">
             <img id='pyramid' src='/intrp.jpg' style={{
-              width: "100%"
+              
             }} className='imgPic' alt='img1' />
           </div>
         </div>

@@ -39,6 +39,7 @@
 .nav-list {
   list-style: none;
   margin: 0;
+  text-align: center;
   padding: 0;
   display: flex;
 }
@@ -47,6 +48,7 @@
   /* Adjust margin between items as needed */
   margin:1vh;
   font-size: 1.7vw;
+  text-align: center;
 }
 @media(max-width:900px) {
   .h1{
@@ -56,7 +58,7 @@
     width: 5vh;
   }
   .nav-item{
-    width: 13vw;
+    width: 13.5vw;
     margin:1vw;
   }
   .nav-link{
@@ -68,7 +70,29 @@
   }
   
 }
-
+@media(max-width:700px) {
+  .h1{
+    font-size: 3.5vw;
+  }
+  #logoof{
+    width: 5vh;
+  }
+  .nav-item{
+    width: 18vw;
+    margin:0.51vw;
+  }
+  .nav-link{
+    font-size: 3.5vw;
+    width: 13vw;
+  }
+  .log{
+    padding-top: 1vh;
+  }
+  #trynow{
+    width: 11vw;
+  }
+  
+}
 
 .nav-link {
   text-decoration: none;

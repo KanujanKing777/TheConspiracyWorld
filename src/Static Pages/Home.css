@@ -17,5 +17,12 @@
 .startP {
     font-size: 8vh;
     color: white;
+    width: 99vw;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+}
+@media(max-width:900px){
+    .startP{
+        font-size: 5vh;
+    }
 }
