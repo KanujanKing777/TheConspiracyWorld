@@ -15,16 +15,17 @@
 .tabs {
     display: flex;
     justify-content: space-around;
-    padding: 10px;
 }
 .sticky{
     position: sticky;
-    bottom: 10px;
-    background-color: #121212;
+    bottom: 5px;
+    background-color: #334477;
+    margin-left: 1vh;
+    margin-right: 1vh;
+
     border-radius: 15px;
 }
 .post-contentx {
-    padding: 5px;
     text-align: justify;
 }
 
@@ -33,7 +34,7 @@
     text-align: center;
     padding: 10px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 15px;
     transition: background-color 0.3s;
     font-size: calc(5px + 3vmin);
 }
@@ -47,30 +48,27 @@
     word-wrap: break-word;
 }
 
-.a {
-    color: #3498db;
-    /* Default link color */
+a {
+    color: #6eceee;
     text-decoration: none;
-    /* Remove underline by default */
     transition: color 0.3s ease;
-    /* Smooth color transition on hover */
 }
 
 /* Style for visited links */
-.a:visited {
-    color: #9b59b6;
+a:visited {
+    color: #6eceee;
     /* Visited link color */
 }
 
 /* Style for hovered links */
-.a:hover {
+a:hover {
     color: #2ecc71;
     /* Hovered link color */
 }
 
 /* Style for active/focused links */
-.a:active,
-.a:focus {
+a:active,
+a:focus {
     color: #e74c3c;
     /* Active/focused link color */
 }
@@ -80,12 +78,7 @@
     background-color: rgba(255, 255, 255, 0.3);
 }
 .popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
     height: max-content;
-    transform: translate(-50%, -50%);
     padding: 2%;
     border: 1px solid #000;
     background-color: #121212;
@@ -98,4 +91,11 @@
     width: 15%;
     height: 30%;
     background-color: #121212;
+}
+#refContainer{
+    padding: 2vh;
+    margin: 1vh;
+    background-color: #121212;
+    border-radius: 15px;
+    height: max-content;
 }

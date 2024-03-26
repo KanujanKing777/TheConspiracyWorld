@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const FloatingButton = (idbro) => {
+const FloatingButton = ({idbro, usertypebro}) => {
   const navigate = useNavigate();
   const [isButtonVisible, setButtonVisibility] = useState(true);
 
   const funny = () => {
-    alert(typeof null);
-    if(idbro.data === null){
+    if(idbro === null){
       navigate('/login');
     }
     else{
-      var str = '/newpost?userid='+idbro.data;
+      var str = '/newpost?userid='+idbro+'&usertype='+usertypebro;
       navigate(str);  
       
     }

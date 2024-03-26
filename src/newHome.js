@@ -67,7 +67,7 @@ function NewHome(){
                     </div>
                 ))}
             </div>
-            <FloatingButton data={userid}/>
+            <FloatingButton idbro={userid} usertypebro={usertype}/>
 
         </div>
         </>

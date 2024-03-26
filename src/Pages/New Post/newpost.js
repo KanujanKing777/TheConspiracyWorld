@@ -37,7 +37,7 @@ function Newpost() {
     const queryParams = new URLSearchParams(location.search);
     const userid = queryParams.get('userid');
     const usertype= queryParams.get('usertype');
-    
+    console.log('userid: '+userid);
     async function PostTheory() {
         var reference = document.getElementById('refp').innerHTML;
         reference = reference.replace(/<br>/g, ',');

@@ -29,7 +29,7 @@ function PostClient() {
     const userid = queryParams.get('userid');
     const [activeTab, setActiveTab] = useState("tab0"); // Default active tab
 
-    const [post, setPost] = useState({ Title: "", Content: "" });
+    const [post, setPost] = useState({ Title: "", Content: "", Reference: ""});
     const [Likes, setLikes] = useState("");
     useEffect(() => {
         const fetchData = async () => {
@@ -53,8 +53,7 @@ function PostClient() {
     }, [firestore, postid]);
     useEffect(() => {
         var a = document.getElementById('likebutton');
-        console.log(typeof Likes);
-        if (Likes.includes(" " + userid)) {
+        if (Likes.includes(userid)) {
             a.innerHTML = '❤️Like';
             
         } else {
@@ -93,6 +92,34 @@ function PostClient() {
             document.title = 'The Conspiracy World';
         };
     }, [post.Title]);
+    useEffect(()=>{
+        var text = post.Reference;
+        text = text.replace(' ', '');
+        const References = text.split(',');
+        const container = document.getElementById('refContainer');
+        References.forEach((string) => {
+            if(string === ''){
+
+            }
+            else{
+                if(container.innerHTML.includes(string)){
+
+                }else{
+                    const a = document.createElement('a');
+                    a.href = string;
+                    a.textContent = string;
+                    a.text = string;
+                    a.target = "_blank";
+                    
+                    container.append(a);
+                    container.append(document.createElement('br'));
+                }
+                
+            }
+            
+            
+        });
+    });
     const openPopup = () => {
         document.getElementById('popup').style.display = 'block';
         handleTabClick("tab3");
@@ -101,7 +128,9 @@ function PostClient() {
     // Function to close the popup
     const closePopup = () => {
         document.getElementById('popup').style.display = 'none';
+        setActiveTab('tab0');
     }
+    
     return (
         <>
             <div className="postbox">
@@ -112,39 +141,47 @@ function PostClient() {
                             scrollbarWidth: 'thin',
                             scrollbarColor: '#F2F2F2 transparent',
                         }} className="post-contentx">{post.Content}</p>
-                        References
-                        <p className="" id="ref" ><a href={post.Reference}>{post.Reference}</a></p>
+                        
+                        
+                        <div className="ref" id="refContainer">References <br></br></div>
                         <div className="tabs sticky">
                             <div className={`tab ${activeTab === "tab1" ? "active" : ""}`} id="likebutton" onClick={async () => {
                                 var a = document.getElementById('likebutton');
                                 
                                     handleTabClick("tab1")
                                     if (a.innerHTML === '❤️Like') {
+                                        const documentRef = doc(firestore, 'posts', postid);
+                                        await updateDoc(documentRef, {
+                                            Likes: Likes.replace(userid, ''),
+                                        });
                                         a.innerHTML = '🤍Like';
+                                        setActiveTab('tab0');
                                     } else {
-                                        a.innerHTML = '❤️Like';
                                         const documentRef = doc(firestore, 'posts', postid);
                                         await updateDoc(documentRef, {
                                             Likes: Likes + ' ' + userid,
                                         });
+                                        a.innerHTML = '❤️Like';
+
                                     }
                                     
                                 
                             }}></div>
                             <div className={`tab ${activeTab === "tab2" ? "active" : ""}`} onClick={() => handleTabClick("tab2")}>💬Comment</div>
-                            <div className={`tab ${activeTab === "tab3" ? "active" : ""}`} onClick={() => openPopup()}><ShareIcon /> Share</div>
+                            <div className={`tab ${activeTab === "tab3" ? "active" : ""}`} onClick={() => handleTabClick('tab3')}><ShareIcon /> Share</div>
                         </div>
                         <div className="tabContent">
                             {activeTab === "tab1" && <div className="tabc"></div>}
                             {activeTab === "tab2" && <div className="tabc" id="ref" ><ChatComponent data={postid} userid={userid} /></div>}
-                            {activeTab === "tab3" && <div className="tabc" ></div>}
+                            {activeTab === "tab3" && <div className="tabc" > 
+                                <div id="popup" className="popup">
+                                    Copy URL
+                                    <button type="button" onClick={copyfun}>📄 Copy Link</button>
+                                </div>
+                            </div>}
                         </div>
                     </div>
-                    <div id="popup" class="popup">
-                        Copy URL
-                        <button id="x" type="button" onClick={closePopup}> x </button>
-                        <button type="button" onClick={copyfun}>📄 Copy Link</button>
-                    </div>
+                   
                     <Notification data={"URL Copied"}></Notification>
                 </div>
             </div>

@@ -6,8 +6,8 @@ function Notification({data}){
             
                 display :"none",
                 position :"fixed",
-                top:"5%",
-                left :"50%",
+                top:"3%",
+                left :"45%",
                 color :"white", 
                 height :"max-content",
                 background :"linear-gradient(109.6deg, #006400 11.2%, #006400 91.7%)",   
