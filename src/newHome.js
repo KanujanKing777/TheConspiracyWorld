@@ -40,9 +40,17 @@ function NewHome(){
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const userid = queryParams.get('userid');
+    const usertype = queryParams.get('usertype');
     function postClick(id){
-        var str = '/post?postid=' + id + '&userid=' + userid;
-        navigate(str);
+        if(usertype === 'normal'){
+            var str = '/post?postid=' + id + '&userid=' + userid;
+            navigate(str);
+        }
+        else{
+            str = '/postExpert?postid=' + id + '&userid=' + userid;
+            navigate(str);
+        }
+        
     }
     return (
         

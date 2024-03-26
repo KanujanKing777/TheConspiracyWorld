@@ -4,6 +4,7 @@ import './Singup.css'; // Import the CSS file
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import Notification from '../../components/Notification';
 import { collection, addDoc, getDocs } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -33,13 +34,16 @@ function Signup() {
     try {
       const userdata = {};
       const usernameid = {};
+      const usertypes = {};
       const querySnapshot = await getDocs(collection(firestore, "users"));
       querySnapshot.forEach((doc) => {
         usernameid[doc.data()['Name']] = doc.id;
         userdata[doc.data()['Name']] = doc.data()['Password'];
+        usertypes[doc.data()['Name']] = doc.data()['type'];
       });
       if (userdata[username] === password) {
-        var str = '/home?userid='+usernameid[username];
+        
+        var str = '/home?userid='+usernameid[username]+'&usertype='+usertypes[username];
         navigate(str);
       }
       else {

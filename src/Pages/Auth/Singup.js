@@ -39,6 +39,7 @@ function Signup(){
           Name:username,
           Email:email,
           Password:password,
+          type:"normal"
         });
         
         navigate('/login');

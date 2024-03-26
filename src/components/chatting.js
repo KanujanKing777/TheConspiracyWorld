@@ -20,10 +20,9 @@ const app = initializeApp(firebaseConfig);
 
 const firestore = getFirestore(app);
 
-const ChatComponent = ({data, user}) => {
+const ChatComponent = ({data, userid}) => {
     const [messages, setMessages] = useState([]);
     var [newMessage, setNewMessage] = useState('');
-    const [supposeIs, setSupposeIs] = useState(false);
     const messagesRef = useRef(null);
 
     useEffect(() => {
@@ -33,10 +32,9 @@ const ChatComponent = ({data, user}) => {
     const bigUser = async(value) =>{
         const ref2 = doc(firestore, 'users', value['UserId']);
         const docSnap2 = await getDoc(ref2);
-
         if(docSnap2.exists()){
             const userName = docSnap2.data()['Name'];
-            if(user === value['UserId']){
+            if(userid === value['UserId']){
                 const newvalue ={ text: value['Message'], sender: 'me', category: 'suppose' };
                 return newvalue;
 
@@ -44,6 +42,7 @@ const ChatComponent = ({data, user}) => {
             else{
                 const newvalue ={ text: value['Message'], sender: userName, category: 'suppose' }
                 return (newvalue);
+
             }
             
         }
@@ -59,18 +58,14 @@ const ChatComponent = ({data, user}) => {
                 const docSnap = await getDoc(ref);
 
                 if (docSnap.exists()) {
-                    const supposeChats = docSnap.data()['SupposeChats'];
-                    const opposeChats = docSnap.data()['OpposeChats'];
+                    const supposeChats = docSnap.data()['Chats'];
                     
                     const fetchedSupposeMessages = await Promise.all(supposeChats.map(bigUser));
 
-                    const fetchedOpposeMessages = await Promise.all(opposeChats.map(bigUser));
-
-                    const allMessages = [...fetchedSupposeMessages, ...fetchedOpposeMessages];
-                    if(allMessages.length === 0){
-                        document.getElementById('chatboxi').style.height = '1vh';
+                    if(fetchedSupposeMessages.length === 0){
+                        document.getElementById('chatboxi').style.height = 'max-content';
                     }
-                    setMessages(allMessages);
+                    setMessages(fetchedSupposeMessages);
                 }
             } catch (error) {
                 console.error('Error fetching initial chats: ', error);
@@ -83,51 +78,35 @@ const ChatComponent = ({data, user}) => {
 
     const handleInputChange = (e) => {
         setNewMessage(e.target.value);
-        setSupposeIs(e.target.value.toLowerCase().includes('suppose'));
     };
 
     const handleSendMessage = async () => {
         if (newMessage.trim() === '') return;
         setMessages([...messages, { text: newMessage, sender: 'me' }]);
         setNewMessage('');
-        if (supposeIs) {
             try {
                 const ref = doc(firestore, 'posts', data);
+                console.log('newmessage ' + newMessage);
+                console.log('userId ' + userid);
                 await updateDoc(ref, {
-                    SupposeChats: arrayUnion({
+                    Chats: arrayUnion({
                         Message: newMessage,
-                        UserId: user
+                        UserId: userid
                     }), // Replace with the field you want to update and its new value
                 });
-                console.log('Message sent!');
                 document.getElementById('chatboxi').style.height = '40vh';
             } catch (error) {
                 console.error('Error updating document: ', error);
             }
-        }
-        else {
-            try {
-                const ref = doc(firestore, 'posts', data);
-                await updateDoc(ref, {
-                    OpposeChats: arrayUnion({
-                        Message: newMessage,
-                        UserId: user
-                    }), // Replace with the field you want to update and its new value
-                });
-                document.getElementById('chatboxi').style.height = '40vh';
-                console.log(user, 'Message sent!');
-            } catch (error) {
-                console.error('Error updating document: ', error);
-            }
-        }
+            
+        
     };
-
     return (
         <>
             <div
                 style={{
                     width: '100%',
-                    height: '40vh',
+                    height: 'max-content',
                     marginBottom: '25px',
                     borderRadius: '8px',
                     overflowY: 'auto',

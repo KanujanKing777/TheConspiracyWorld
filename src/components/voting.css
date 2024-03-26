@@ -5,7 +5,9 @@
 #support {
     width: 40vw;
 }
-
+#myth {
+    width: 40vw;
+}
 .support {
     display: flex;
     justify-content: center;

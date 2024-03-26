@@ -36,6 +36,7 @@ function Newpost() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const userid = queryParams.get('userid');
+    const usertype= queryParams.get('usertype');
     
     async function PostTheory() {
         var reference = document.getElementById('refp').innerHTML;
@@ -49,17 +50,18 @@ function Newpost() {
             Title: title,
             Content: content,
             Reference: reference,
-            SupposeVotes: 0,
-            OpposeVotes: 0,
+            Likes: "",
+            HypothesisVotes: 0,
+            ConspiracyVotes: 0,
+            MythVotes: 0,
             UserId: userid,
-            SupposeChats: [],
-            OpposeChats: [],
+            Chats: [],
             CreatedDT:Timestamp.now()
         };
         try{
             await addDoc(collection(firestore,'posts'), Data);
             alert('Post saved');
-            navigate('/home');
+            navigate('/home?userid='+userid+'&usertype='+usertype);
         }
         catch(error){
             alert(error.message);

@@ -49,9 +49,7 @@ const VotingBox = (docID) => {
   const totalVotes = supportVotes + opposeVotes;
   const supportPercentage = totalVotes === 0 ? 0 : (supportVotes / totalVotes) * 100;
   const opposePercentage = totalVotes === 0 ? 0 : (opposeVotes / totalVotes) * 100;
-  const gradientStyleSupport =`linear-gradient(to right, #3498db ${supportPercentage}%, transparent ${supportPercentage}%)`;
-  
-  const gradientStyleOppose = `linear-gradient(to right, #e74c3c ${opposePercentage}%, transparent ${opposePercentage}%)`;
+  const gradient = '#F2F2F2';
   
   const handleVote = async(voteType) => {
     if (userVote === null) {
@@ -61,16 +59,21 @@ const VotingBox = (docID) => {
         await updateDoc(ref, {
             SupposeVotes: supportVotes+1, // Replace with the field you want to update and its new value
         });
-        document.getElementById('support').style.background = gradientStyleSupport;
-        document.getElementById('oppose').style.background = gradientStyleOppose;
+        document.getElementById('support').style.background = gradient;
+        document.getElementById('support').style.color = "black";
+
       } else if (voteType === 'oppose') {
         setOpposeVotes(opposeVotes + 1);
         const ref = doc(firestore, 'posts', docID.data);
         await updateDoc(ref, {
             OpposeVotes: opposeVotes+1, // Replace with the field you want to update and its new value
         });
-        document.getElementById('support').style.background = gradientStyleSupport;
-        document.getElementById('oppose').style.background = gradientStyleOppose;
+        document.getElementById('oppose').style.background = gradient;
+        document.getElementById('oppose').style.color = "black";
+      }
+      else{
+        document.getElementById('myth').style.background = gradient;
+        document.getElementById('myth').style.color = "black";
       }
       setUserVote(voteType);
       
@@ -92,7 +95,7 @@ const VotingBox = (docID) => {
             
             id='support'
           >
-            Support
+            Hypothesis
           </button>
         </div>
         <div className="oppose">
@@ -101,7 +104,16 @@ const VotingBox = (docID) => {
             disabled={userVote !== null}
             id='oppose'
           >
-            Oppose
+            Conspiracy
+          </button>
+        </div>
+        <div className="oppose">
+          <button
+            onClick={() => handleVote('myth')}
+            disabled={userVote !== null}
+            id='myth'
+          >
+            Myth
           </button>
         </div>
       </div>

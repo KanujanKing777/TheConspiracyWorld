@@ -3,8 +3,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { useLocation, useNavigate } from 'react-router-dom';
 import './post.css';
-import VotingBox from "./components/voting";
-import ChatComponent from "./components/chatting";
+import VotingBox from "../../components/voting";
+import ChatComponent from "../../components/chatting";
 const firebaseConfig = {
     apiKey: "AIzaSyCXoH3sRAs9i0aPMRgNCHjNAvnWIzAaT3Y",
     authDomain: "thespaceforconspiracy.firebaseapp.com",
@@ -24,7 +24,7 @@ function Post() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const postid = queryParams.get('postid');
-    const userid= queryParams.get('userid');
+    const userid = queryParams.get('userid');
     const [activeTab, setActiveTab] = useState("tab1"); // Default active tab
 
     const [post, setPost] = useState({ Title: "", Content: "" });
@@ -85,12 +85,12 @@ function Post() {
     useEffect(() => {
         // Set the document title when the component is mounted
         document.title = post.Title;
-    
+
         // Optionally reset the title when the component is unmounted
         return () => {
-          document.title = 'The Conspiracy World';
+            document.title = 'The Conspiracy World';
         };
-      }, [post.Title]);
+    }, [post.Title]);
     return (
         <>
             <div className="postbox">
@@ -101,14 +101,14 @@ function Post() {
                             scrollbarWidth: 'thin',
                             scrollbarColor: '#F2F2F2 transparent',
                         }} className="post-contentx">{post.Content}</p>
-                        
+
                         <div className="tabs">
                             <div className={`tab ${activeTab === "tab1" ? "active" : ""}`} onClick={() => handleTabClick("tab1")}>💬</div>
                             <div className={`tab ${activeTab === "tab2" ? "active" : ""}`} onClick={() => handleTabClick("tab2")}>📚</div>
                             <div className={`tab ${activeTab === "tab3" ? "active" : ""}`} onClick={() => handleTabClick("tab3")}>🗳️</div>
                         </div>
                         <div className="tabContent">
-                            {activeTab === "tab1" && <div className="tabc"><ChatComponent data={postid} user={userid}/></div>}
+                            {activeTab === "tab1" && <div className="tabc"><ChatComponent data={postid} userid={userid} /></div>}
                             {activeTab === "tab2" && <div className="tabc" id="ref" dangerouslySetInnerHTML={{ __html: formatReference() }}></div>}
                             {activeTab === "tab3" && <div className="tabc"><VotingBox data={postid} /></div>}
                         </div>
