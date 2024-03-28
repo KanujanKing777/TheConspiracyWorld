@@ -1,6 +1,12 @@
 import './Layout2.css'; // Create a separate CSS file for styling
+import { BrowserRouter as Router, Routes, Route, redirect, useNavigate } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 const Layout2 = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const userid = queryParams.get('userid');
     function themeChange() {
         document.body.style.backgroundColor = "#ddd";
         document.body.style.color = "#333";
@@ -57,7 +63,13 @@ const Layout2 = () => {
 
                 <span className="right-section">
                     <ul className="nav-list">
-
+                        <button style={{
+                            
+                        }}  type='button' id='experti' onClick={()=>{
+                            navigate('/becomeanexpert?userid='+userid+'');
+                        }}>
+                            Become An Expert
+                        </button>
                         <button id='day'  type='button' onClick={themeChange2} hidden>
                             &#127769;
                         </button>

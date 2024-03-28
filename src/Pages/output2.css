@@ -2,18 +2,20 @@
     width: max-content;
     display: inline-block;
 }
-.li{
+
+.li {
     padding: 2vh;
+    cursor: pointer;
 }
+
 li:hover {
-    padding: 2.5vh;
-    
+    border: 1.5px solid #22d3ee;
 }
 
 .funtableselect {
     display: flex;
     align-items: center;
-    
+
     justify-content: center;
 }
 
@@ -23,10 +25,28 @@ li:hover {
     border: 1px solid white;
     border-radius: 10px;
     padding: 2.5vh;
+
     padding-bottom: 4vh;
 }
 
+#submitexpert {
+    width: 95%;
+    border-radius: 10px;
+    margin: 1vh;
+    text-align: center;
+    background-color: #052e16;
+    color: #99f6e4;
+
+    border: 1px solid #16a34a;
+    font-size: 3.5vh;
+}
+
+#submitexpert:hover {
+    border-radius: 15px;
+    border: 1.5px solid #16a34a;
+}
+
 .fundudede {
-    font-size: 4vh;
+    font-size: 3vh;
     margin-bottom: 2.5vh;
 }

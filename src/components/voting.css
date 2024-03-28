@@ -19,3 +19,25 @@
     justify-content: center;
     align-items: center;
 }
+
+.votingbutton{
+    width: 100%;
+    padding: 10px;
+    margin-top: 2vh;
+    background-color: rgba(255, 255, 255, 0.1); /* Set a transparent white background */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+  
+    /* Glass effect */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.votingbutton:hover{
+    background-color: rgba(255, 255, 255, 0.3); /* Adjust the opacity on hover */
+
+}

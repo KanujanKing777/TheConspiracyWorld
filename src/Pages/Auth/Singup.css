@@ -20,7 +20,7 @@
     -webkit-backdrop-filter: blur(10px);
   }
   
-  h2 {
+  h2{
     text-align: center;
   }
   
@@ -61,5 +61,11 @@
   
   #loginbutton:hover {
     background-color: rgba(255, 255, 255, 0.3); /* Adjust the opacity on hover */
+  }
+  .formlogininput{
+    height: 7vh;
+    padding: 1.5vh;
+    border-radius: 7px;
+    color:black;
   }
   

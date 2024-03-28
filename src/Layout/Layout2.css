@@ -10,7 +10,19 @@
     margin:0;
     /* Adjust padding as needed */
 }
-
+#experti{
+    border:1px solid #16a34a;
+                            background-color:#052e16;
+                            padding:2vh;
+                            border-radius:15px;
+                            font-size:3.5vh;
+                            margin-top:1.6vh;
+                            height:9vh;
+}
+#experti:hover{
+    border-radius: 15px;
+    border: 1.5px solid #16a34a;
+}
 .left-section {
     display: flex;
     align-items: center;

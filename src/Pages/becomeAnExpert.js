@@ -1,57 +1,107 @@
 import React, { useEffect } from 'react';
 import './output.css';
 import './output2.css';
+import { useNavigate } from 'react-router-dom';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
+import { BrowserRouter as Router, Routes, Route, redirect } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyCXoH3sRAs9i0aPMRgNCHjNAvnWIzAaT3Y",
+    authDomain: "thespaceforconspiracy.firebaseapp.com",
+    projectId: "thespaceforconspiracy",
+    storageBucket: "thespaceforconspiracy.appspot.com",
+    messagingSenderId: "652964257001",
+    appId: "1:652964257001:web:461022b1e74763eff3a478"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const firestore = getFirestore(app);
+
 function ExpertPage() {
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const userid = queryParams.get('userid');
     const categorieslist = [
         "Astrophysics", "Modern Physics", "Quantum Physics", "Biology", "Mathematics",
         "Genetics", "Medicine"
     ];
+    var selectedlist = [];
+    function submittheform() {
 
+    }
     return (
         <>
             <div className='funtableselect'>
                 <div className='selectiontable'>
-                    <p className="fundudede">Select your expertised fields</p>
-                    <ul id='funfunfunxxx' class="*:rounded-full *:border *:border-sky-100 *:bg-sky-50 *:px-2 *:py-0.5 dark:text-sky-300 dark:*:border-sky-500/15 dark:*:bg-sky-500/10 ...">
+                    <h1 style={{
+                        fontSize: "5vh",
+                        textAlign: "center",
+                        marginBottom: '2vh'
+                    }}>Become An Expert</h1>
+                    <p className="fundudede">Select Your Expertised Fields</p>
+                    <ul style={{
+                        marginTop: '0'
+                    }} id='funfunfunxxx' class="*:rounded-full *:border *:border-sky-100 *:bg-sky-50 *:px-2 *:py-0.5 dark:text-sky-300 dark:*:border-sky-500/15 dark:*:bg-sky-500/10 ...">
 
                         {categorieslist.map((item, index) => (
                             <li style={{
-                                margin: "1vh"
+                                margin: "1vh",
                             }} className='li' id={item.replace(" ", "")} key={index} onClick={() => {
-                                document.getElementById(item.replace(" ", "")).innerText = '\u2713 ' + document.getElementById(item.replace(" ", "")).innerText;
+                                var datanew = document.getElementById(item.replace(" ", "")).innerText;
+                                if (datanew.includes('\u2713')) {
+                                    document.getElementById(item.replace(" ", "")).innerText = datanew.replace('\u2713 ', '');
+                                    selectedlist.pop(item);
+                                } else {
+                                    document.getElementById(item.replace(" ", "")).innerText = '\u2713 ' + datanew;
+                                    selectedlist.push(item);
+                                }
                             }}>{item}</li>
                         ))}
 
 
                     </ul>
-              
-                    <p className="fundudede">Describe your talents to become an expert</p>
+
+                    <p className="fundudede">Describe your Talents</p>
                     <textarea style={{
                         backgroundColor: "#353535",
                         padding: "1vh",
                         width: "95%",
                         margin: "2vh",
-                        resize:"none"
-                    }}>
+                        resize: "none",
+                        marginTop: "0"
+                    }}
+                        id='describedtalent'>
 
                     </textarea>
                     <ul id='funfunfunxxx' class="*:rounded-full *:border  *:px-2 *:py-0.5 dark:text-sky-300  "
                         style={{
-                            display:"flex",
-                            justifyContent:"center",
-                            alignItems:"center"
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center"
                         }}
                     >
-                    <li className='li' style={{
-                        width:"95%",
-                        borderRadius:"10px",
-                        margin:"1vh",
-                        textAlign:"center",
-                        backgroundColor:"#052e16",
-                        color:"white",
-                        border:"1px solid #16a34a",
-                        fontSize:"3.5vh"
-                    }}>Submit</li>
+                        <li className='li' id='submitexpert' onClick={async () => {
+                            var talents = document.getElementById('describedtalent').value;
+                            console.log(selectedlist);
+                            console.log(talents);
+                            selectedlist =  selectedlist.map((ele) => {
+                                return ele.replace(' ','')
+                            });
+                            await addDoc(collection(firestore, "experts"), {
+                                User: userid,
+                                ExpertAt:selectedlist.join(' '),
+                                Talent: talents,
+                            });
+                            alert('Request Sent');
+                        }}>Submit</li>
                     </ul>
                 </div>
             </div>

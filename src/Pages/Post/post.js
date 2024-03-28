@@ -103,9 +103,9 @@ function Post() {
                         }} className="post-contentx">{post.Content}</p>
 
                         <div className="tabs">
-                            <div className={`tab ${activeTab === "tab1" ? "active" : ""}`} onClick={() => handleTabClick("tab1")}>💬</div>
-                            <div className={`tab ${activeTab === "tab2" ? "active" : ""}`} onClick={() => handleTabClick("tab2")}>📚</div>
-                            <div className={`tab ${activeTab === "tab3" ? "active" : ""}`} onClick={() => handleTabClick("tab3")}>🗳️</div>
+                            <div className={`tab ${activeTab === "tab1" ? "active" : ""}`} onClick={() => handleTabClick("tab1")}>💬Propose</div>
+                            <div className={`tab ${activeTab === "tab2" ? "active" : ""}`} onClick={() => handleTabClick("tab2")}>📚Reference</div>
+                            <div className={`tab ${activeTab === "tab3" ? "active" : ""}`} onClick={() => handleTabClick("tab3")}>🗳️Voting</div>
                         </div>
                         <div className="tabContent">
                             {activeTab === "tab1" && <div className="tabc"><ChatComponent data={postid} userid={userid} /></div>}

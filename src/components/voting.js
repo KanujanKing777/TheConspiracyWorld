@@ -121,7 +121,7 @@ const VotingBox = (docID) => {
         <div className="support">
           <button
             onClick={() => handleVote('hypothesis')}
-            
+            className='votingbutton'
             id='support'
           >
             Hypothesis
@@ -131,6 +131,7 @@ const VotingBox = (docID) => {
           <button
             onClick={() => handleVote('conspiracy')}
             id='oppose'
+            className='votingbutton'
           >
             Conspiracy
           </button>
@@ -139,6 +140,7 @@ const VotingBox = (docID) => {
           <button
             onClick={() => handleVote('myth')}
             id='myth'
+            className='votingbutton'
           >
             Myth
           </button>

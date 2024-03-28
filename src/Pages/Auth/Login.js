@@ -57,7 +57,7 @@ function Signup() {
   useEffect(() => {
     // Set the document title when the component is mounted
     document.title = 'Log in';
-
+    
     // Optionally reset the title when the component is unmounted
     return () => {
       document.title = 'The Conspiracy World';
@@ -71,17 +71,21 @@ function Signup() {
     }}>
       <div className="signup-container">
         <form className="signup-form">
-          <h2>Log in</h2>
-          <label htmlFor="username">Username:</label>
+          <h2 style={{
+            textAlign:'center',
+            fontSize:'5vh'
+          }}>Log in</h2>
+          <label htmlFor="username">Username</label>
           <input type="text" id="username" name="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            className='formlogininput'
             required />
 
 
 
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password"
+          <label htmlFor="password">Password</label>
+          <input type="password" id="password" name="password" className='formlogininput'
             value={password}
             style={{
               color:"black"
