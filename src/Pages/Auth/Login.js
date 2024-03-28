@@ -66,7 +66,9 @@ function Signup() {
 
 
   return (
-    <div className='whole'>
+    <div className='whole' style={{
+      padding:"1vh"
+    }}>
       <div className="signup-container">
         <form className="signup-form">
           <h2>Log in</h2>
@@ -81,11 +83,14 @@ function Signup() {
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" name="password"
             value={password}
+            style={{
+              color:"black"
+            }}
             onChange={(e) => setPassword(e.target.value)}
             required />
 
 
-          <button type="submit" onClick={handleFormSubmit}>Log In</button>
+          <button id='loginbutton' type="submit" onClick={handleFormSubmit}>Log In</button>
         </form>
       </div>
     </div>

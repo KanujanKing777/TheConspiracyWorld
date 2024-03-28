@@ -39,7 +39,6 @@ html,
 :host {
   line-height: 1.5;
   /* 1 */
-  -webkit-text-size-adjust: 100%;
   /* 2 */
   /* 3 */
   tab-size: 4;
@@ -60,7 +59,6 @@ html,
 */
 
 body {
-  margin: 0;
   /* 1 */
   line-height: inherit;
   /* 2 */
