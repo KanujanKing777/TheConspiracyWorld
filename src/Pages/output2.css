@@ -1,0 +1,31 @@
+li {
+    width: max-content;
+    display: inline;
+    margin: 1%;
+}
+.li{
+    padding: 2vh;
+}
+li:hover {
+    padding: 2.5vh;
+    
+}
+
+#funtableselect {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#selectiontable {
+    width: 50vw;
+    margin: 5px;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 2.5vh;
+}
+
+#fundudede {
+    font-size: 4vh;
+    margin-bottom: 1vh;
+}

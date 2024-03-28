@@ -9,6 +9,7 @@ import NewHome from './newHome';
 import Post from './Pages/Post/post';
 import Chatwithai from './chatwithai';
 import PostClient from './Pages/Post/postClient';
+import ExpertPage from './Pages/becomeAnExpert';
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
         <Route path='/postExpert' element={<Post />} />
         <Route path='/post' element={<PostClient />} />
         <Route path='/chatwithai' element={<Chatwithai />} />
+        <Route path='/becomeanexpert' element={<ExpertPage />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </Router>

@@ -19,8 +19,10 @@ const firestore = getFirestore(app);
 
 
 const VotingBox = (docID) => {
-  const [supportVotes, setSupportVotes] = useState(0);
-      const [opposeVotes, setOpposeVotes] = useState(0);
+      const [ConspiracyVotes, setConspiracyVotes] = useState(0);
+      const [HypothesisVotes, setHypothesisVotes] = useState(0);
+      const [MythVotes,       setMythVotes      ] = useState(0);
+
       const [userVote, setUserVote] = useState(null);
       useEffect(() => {
         // Fetch initial chat data when the component mounts
@@ -30,10 +32,12 @@ const VotingBox = (docID) => {
                 const docSnap = await getDoc(ref);
 
                 if (docSnap.exists()) {
-                    const x = docSnap.data()['SupposeVotes'];
-                    const y = docSnap.data()['OpposeVotes'];
-                    setSupportVotes(x);
-                    setOpposeVotes(y);
+                    const x = docSnap.data()['ConspiracyVotes'];
+                    const y = docSnap.data()['HypothesisVotes'];
+                    const z = docSnap.data()['MythVotes'];
+                    setConspiracyVotes(x);
+                    setHypothesisVotes(y);
+                    setMythVotes(z);
                 }
             } catch (error) {
                 console.error('Error fetching initial chats: ', error);
@@ -46,38 +50,64 @@ const VotingBox = (docID) => {
     
       
 
-  const totalVotes = supportVotes + opposeVotes;
-  const supportPercentage = totalVotes === 0 ? 0 : (supportVotes / totalVotes) * 100;
-  const opposePercentage = totalVotes === 0 ? 0 : (opposeVotes / totalVotes) * 100;
   const gradient = '#F2F2F2';
   
   const handleVote = async(voteType) => {
-    if (userVote === null) {
-      if (voteType === 'support') {
-        setSupportVotes(supportVotes + 1);
+    if(userVote === 'conspiracy'){
+      setConspiracyVotes(ConspiracyVotes - 1);
+      const ref = doc(firestore, 'posts', docID.data);
+      await updateDoc(ref, {
+        ConspiracyVotes: ConspiracyVotes-1, // Replace with the field you want to update and its new value
+      });
+      document.getElementById('oppose').removeAttribute('style');
+    }
+    else if(userVote === 'hypothesis'){
+      setHypothesisVotes(HypothesisVotes - 1);
         const ref = doc(firestore, 'posts', docID.data);
         await updateDoc(ref, {
-            SupposeVotes: supportVotes+1, // Replace with the field you want to update and its new value
+            HypothesisVotes: HypothesisVotes-1, // Replace with the field you want to update and its new value
         });
-        document.getElementById('support').style.background = gradient;
-        document.getElementById('support').style.color = "black";
-
-      } else if (voteType === 'oppose') {
-        setOpposeVotes(opposeVotes + 1);
+        document.getElementById('support').removeAttribute('style');
+    }
+    else if(userVote === 'myth'){
+      setMythVotes(MythVotes + 1);
+      const ref = doc(firestore, 'posts', docID.data);
+      await updateDoc(ref, {
+        MythVotes: MythVotes+1, // Replace with the field you want to update and its new value
+      });
+      document.getElementById('myth').removeAttribute('style');
+    }
+    
+      if (voteType === 'conspiracy') {
+        setConspiracyVotes(ConspiracyVotes + 1);
         const ref = doc(firestore, 'posts', docID.data);
         await updateDoc(ref, {
-            OpposeVotes: opposeVotes+1, // Replace with the field you want to update and its new value
+          ConspiracyVotes: ConspiracyVotes+1, // Replace with the field you want to update and its new value
         });
         document.getElementById('oppose').style.background = gradient;
         document.getElementById('oppose').style.color = "black";
+
+      } else if (voteType === 'hypothesis') {
+        setHypothesisVotes(HypothesisVotes + 1);
+        const ref = doc(firestore, 'posts', docID.data);
+        await updateDoc(ref, {
+            HypothesisVotes: HypothesisVotes+1, // Replace with the field you want to update and its new value
+        });
+        document.getElementById('support').style.background = gradient;
+        document.getElementById('support').style.color = "black";
       }
       else{
+        setMythVotes(MythVotes + 1);
+        const ref = doc(firestore, 'posts', docID.data);
+        await updateDoc(ref, {
+          MythVotes: MythVotes+1, // Replace with the field you want to update and its new value
+        });
         document.getElementById('myth').style.background = gradient;
         document.getElementById('myth').style.color = "black";
       }
       setUserVote(voteType);
-      
-    }
+    
+
   };
     
     
@@ -90,8 +120,7 @@ const VotingBox = (docID) => {
       <div className="vote-counts" id='voting'> 
         <div className="support">
           <button
-            onClick={() => handleVote('support')}
-            disabled={userVote !== null}
+            onClick={() => handleVote('hypothesis')}
             
             id='support'
           >
@@ -100,8 +129,7 @@ const VotingBox = (docID) => {
         </div>
         <div className="oppose">
           <button
-            onClick={() => handleVote('oppose')}
-            disabled={userVote !== null}
+            onClick={() => handleVote('conspiracy')}
             id='oppose'
           >
             Conspiracy
@@ -110,7 +138,6 @@ const VotingBox = (docID) => {
         <div className="oppose">
           <button
             onClick={() => handleVote('myth')}
-            disabled={userVote !== null}
             id='myth'
           >
             Myth
