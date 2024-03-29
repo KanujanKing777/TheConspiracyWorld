@@ -1,17 +1,14 @@
-import React, { useEffect } from 'react';
 import './output.css';
 import './output2.css';
-import { useNavigate } from 'react-router-dom';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
-import { BrowserRouter as Router, Routes, Route, redirect } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+// Your web app's Firebase configurationu
 const firebaseConfig = {
     apiKey: "AIzaSyCXoH3sRAs9i0aPMRgNCHjNAvnWIzAaT3Y",
     authDomain: "thespaceforconspiracy.firebaseapp.com",
@@ -34,9 +31,7 @@ function ExpertPage() {
         "Genetics", "Medicine"
     ];
     var selectedlist = [];
-    function submittheform() {
-
-    }
+   
     return (
         <>
             <div className='funtableselect'>
