@@ -6,7 +6,6 @@ import './newHome.css';
 import Layout2 from "./Layout/Layout2";
 import { useNavigate, useLocation } from "react-router-dom";
 import FloatingButton from "./components/floatingButton";
-
 const firebaseConfig = {
     apiKey: "AIzaSyCXoH3sRAs9i0aPMRgNCHjNAvnWIzAaT3Y",
     authDomain: "thespaceforconspiracy.firebaseapp.com",

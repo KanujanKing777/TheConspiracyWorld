@@ -7,6 +7,8 @@ const Layout2 = () => {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const userid = queryParams.get('userid');
+    const usertype = queryParams.get('usertype');
+
     function themeChange() {
         document.body.style.backgroundColor = "#ddd";
         document.body.style.color = "#333";
@@ -59,6 +61,15 @@ const Layout2 = () => {
                 <div className="left-section">
                     <img src='/yinyang.png' className='App-logo' alt='logo' />
                     <h1 className='h1'>The Conspiracy World</h1>
+                    <button style={{
+                        marginLeft:"35px"
+                    }} type='button'>Home</button>
+                    <button style={{
+                        marginLeft:"15px"
+                    }} type='button' onClick={()=>{
+                        navigate('/profile?userid='+userid+'&type='+usertype);
+                    }}>Profile</button>
+
                 </div>
 
                 <span className="right-section">

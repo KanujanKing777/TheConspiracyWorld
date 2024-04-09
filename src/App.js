@@ -10,6 +10,7 @@ import Post from './Pages/Post/post';
 import Chatwithai from './chatwithai';
 import PostClient from './Pages/Post/postClient';
 import ExpertPage from './Pages/becomeAnExpert';
+import Profile from './Pages/Profile/Profile';
 function App() {
   return (
     <Router>
@@ -24,6 +25,7 @@ function App() {
         <Route path='/post' element={<PostClient />} />
         <Route path='/chatwithai' element={<Chatwithai />} />
         <Route path='/becomeanexpert' element={<ExpertPage />} />
+        <Route path='/Profile' element={<Profile />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </Router>
