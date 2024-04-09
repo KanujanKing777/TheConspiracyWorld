@@ -19,11 +19,11 @@
 }
 
 .App-logo {
-  width: 7vh;
+  width: 4vh;
   /* Adjust the width as needed */
   height: auto;
   /* Maintain aspect ratio */
-  margin-right: 1vw;
+  margin-right: 0.7vw;
   /* Adjust margin as needed */
 }
 
@@ -31,7 +31,7 @@
   margin: 0;
   /* Remove default margin for h1 */
   color: white;
-  font-size: 2vw;
+  font-size: 1.5vw;
   font-weight: 500;
 }
 
@@ -72,7 +72,7 @@
 }
 @media(max-width:700px) {
   .h1{
-    font-size: 3.5vw;
+    font-size: 3.1vw;
   }
   #logoof{
     width: 5vh;

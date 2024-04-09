@@ -51,6 +51,7 @@ function NewHome(){
         }
         
     }
+    
     return (
         
         <>
@@ -59,7 +60,28 @@ function NewHome(){
             <div className="posts" >
                 {array.map((box) => (
                     <div key={box} className="box">
-                        <div className="post-box" onClick={postClick.bind(null, box.id)}>
+                        <div className="post-box" onClick={postClick.bind(null, box.id)} >
+                            <h2 style={{
+                            backgroundColor:
+                            (box.data()['HypothesisVotes']>box.data()['ConspiracyVotes'])&&(box.data()['HypothesisVotes']>box.data()['MythVotes'])?
+                            "green":
+                            (box.data()['ConspiracyVotes']>box.data()['HypothesisVotes'])&&(box.data()['ConspiracyVotes']>box.data()['MythVotes'])?
+                            "blue":
+                            (box.data()['MythVotes']>box.data()['HypothesisVotes'])&&(box.data()['MythVotes']>box.data()['ConspiracyVotes'])?
+                            "red":"black",
+                            width:"max-content",
+                            padding:"1%",
+                            borderRadius:"15px",
+                        }}>{
+                            (box.data()['HypothesisVotes']>box.data()['ConspiracyVotes'])&&(box.data()['HypothesisVotes']>box.data()['MythVotes'])
+                            ?"Hypothesis":
+                            (box.data()['ConspiracyVotes']>box.data()['HypothesisVotes'])&&(box.data()['ConspiracyVotes']>box.data()['MythVotes'])?
+                            "Conspiracy":
+                            (box.data()['MythVotes']>box.data()['HypothesisVotes'])&&(box.data()['MythVotes']>box.data()['ConspiracyVotes'])?
+                            
+                            "Myth":""
+                            } </h2>
+
                             <h2 className="post-title">{box.data()['Title']}</h2>
                             <p className="post-content">{box.data()['Content']}</p>
                         </div>

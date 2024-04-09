@@ -62,13 +62,16 @@ const Layout2 = () => {
                     <img src='/yinyang.png' className='App-logo' alt='logo' />
                     <h1 className='h1'>The Conspiracy World</h1>
                     <button style={{
-                        marginLeft:"35px"
-                    }} type='button'>Home</button>
+                        marginLeft:"45px"
+                    }} type='button'>&#127968;Home</button>
+                    <button style={{
+                        marginLeft:"15px"
+                    }} type='button'>&#128269;Search</button>
                     <button style={{
                         marginLeft:"15px"
                     }} type='button' onClick={()=>{
                         navigate('/profile?userid='+userid+'&type='+usertype);
-                    }}>Profile</button>
+                    }}>&#x1F464;Profile</button>
 
                 </div>
 
