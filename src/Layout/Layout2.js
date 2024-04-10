@@ -8,7 +8,7 @@ const Layout2 = () => {
     const queryParams = new URLSearchParams(location.search);
     const userid = queryParams.get('userid');
     const usertype = queryParams.get('usertype');
-
+    const term = queryParams.get('term');
     function themeChange() {
         document.body.style.backgroundColor = "#ddd";
         document.body.style.color = "#333";
@@ -62,16 +62,28 @@ const Layout2 = () => {
                     <img src='/yinyang.png' className='App-logo' alt='logo' />
                     <h1 className='h1'>The Conspiracy World</h1>
                     <button style={{
-                        marginLeft:"45px"
-                    }} type='button'>&#127968;Home</button>
-                    <button style={{
-                        marginLeft:"15px"
-                    }} type='button'>&#128269;Search</button>
-                    <button style={{
-                        marginLeft:"15px"
+                        marginLeft:"45px",
+                        
                     }} type='button' onClick={()=>{
-                        navigate('/profile?userid='+userid+'&type='+usertype);
-                    }}>&#x1F464;Profile</button>
+                        navigate('/home?userid='+userid+'&usertype='+usertype);
+                    }}><span className='emoji'>&#127968;</span>Home</button>
+                    <span style={{
+                        marginLeft:"15px"
+                    }} type='button'><span className='emoji'>&#128269;</span><input id='search' type='search' style={{
+                        width:"80%",
+                        borderRadius:"15px",
+                        color:"black",
+                        padding:"3%",
+                        paddingLeft:"5%"
+                    }} placeholder={term===""?term:"Search..."} onKeyUp={(event)=>{
+                        if(event.keyCode === 13){
+                        var term = document.getElementById("search").value;
+                        navigate('/search?userid='+userid+'&usertype='+usertype+'&term='+term);
+                        }
+                    }}/></span>
+                    <button type='button' onClick={()=>{
+                        navigate('/profile?userid='+userid+'&usertype='+usertype);
+                    }}><span className='emoji'>&#x1F464;</span>Profile</button>
 
                 </div>
 

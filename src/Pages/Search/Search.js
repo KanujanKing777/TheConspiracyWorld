@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState} from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
+import Layout2 from "../../Layout/Layout2";
 import { doc, getDoc, query, collection, where, getDocs } from 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
-import Layout2 from '../../Layout/Layout2';
-import './Profile.css';
+import { useEffect } from 'react';
+
 const firebaseConfig = {
     apiKey: "AIzaSyCXoH3sRAs9i0aPMRgNCHjNAvnWIzAaT3Y",
     authDomain: "thespaceforconspiracy.firebaseapp.com",
@@ -13,47 +14,35 @@ const firebaseConfig = {
     messagingSenderId: "652964257001",
     appId: "1:652964257001:web:461022b1e74763eff3a478"
   };
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+
+  const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 
-  
-function Profile() {
-  const location = useLocation();
+function Search(){
+    const location = useLocation();
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const userId = queryParams.get('userid');
   const usertype = queryParams.get('usertype');
-  const [userData, setUserData] = useState(null);
+  var searchterm = queryParams.get('term');
   const [postData, setPostData] = useState([]);
-  
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const userDocRef = doc(firestore, 'users', userId);
-        const userDocSnapshot = await getDoc(userDocRef);
-        if (userDocSnapshot.exists()) {
-          setUserData(userDocSnapshot.data());
-        } else {
-          console.log('No such user document!');
-        }
-      } catch (error) {
-        console.error('Error fetching user document:', error);
-      }
-    };
-
-    fetchUserData();
-  }, [userId]);
 
   useEffect(() => {
     const fetchPostData = async () => {
       try {
-        const q = query(collection(firestore, "posts"), where('UserId', '==', userId));
+        const q = query(collection(firestore, "posts"));
         const querySnapshot = await getDocs(q);
         
           const posts = [];
           querySnapshot.forEach((doc) => {
-            posts.push(doc);
+            var title = doc.data()['Title'];
+            if(title.includes(searchterm)){
+                posts.push(doc);
+            }
+            var content = doc.data()['Content'];
+            if(content.includes(searchterm)){
+                posts.push(doc);
+            }
           });
           setPostData(posts);
         
@@ -63,7 +52,7 @@ function Profile() {
     };
 
     fetchPostData();
-  }, [userId]);
+  }, [searchterm]);
   function postClick(id){
     if(usertype === 'normal'){
         var str = '/post?postid=' + id + '&userid=' + userId;
@@ -72,21 +61,10 @@ function Profile() {
     else{
         str = '/postExpert?postid=' + id + '&userid=' + userId;
         navigate(str);
-    }
-    
-}
-  return (
-    
-    <div>
-      <Layout2/>
-      {userData && (
-        <div class="profile-container">
-        <img class="profile-picture" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1024px-User_icon_2.svg.png" alt="Profile Picture"/>
-        <div class="user-info">
-            <h2>{userData.Name}</h2>
-            <p>{userData.Email}</p>
-        </div>
-        <div id='postsection'  class="placeholder-content">
+    }}
+    return (
+        <>
+        <Layout2/>
         {postData.length > 0 ? (
             postData.map((box) => (
               <div key={box} className="box">
@@ -118,15 +96,10 @@ function Profile() {
               </div>
             ))
           ) : (
-            <p>No posts found.</p>
+            <p style={{marginLeft:"15px"}}>No Results found.</p>
           )}
-        </div>
-    </div>
-        
-         
-      )}
-    </div>
-  );
+        </>
+    );
 }
 
-export default Profile;
+export default Search;

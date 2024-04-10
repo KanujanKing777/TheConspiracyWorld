@@ -11,6 +11,7 @@ import Chatwithai from './chatwithai';
 import PostClient from './Pages/Post/postClient';
 import ExpertPage from './Pages/becomeAnExpert';
 import Profile from './Pages/Profile/Profile';
+import Search from './Pages/Search/Search';
 function App() {
   return (
     <Router>
@@ -23,6 +24,8 @@ function App() {
         <Route path='/home' element={<NewHome />} />
         <Route path='/postExpert' element={<Post />} />
         <Route path='/post' element={<PostClient />} />
+        <Route path='/search' element={<Search />} />
+
         <Route path='/chatwithai' element={<Chatwithai />} />
         <Route path='/becomeanexpert' element={<ExpertPage />} />
         <Route path='/Profile' element={<Profile />} />

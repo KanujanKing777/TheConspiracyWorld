@@ -25,9 +25,11 @@
 }
 .left-section {
     display: flex;
-    align-items: center;
+    align-items: space-around;
 }
-
+.emoji{
+    font-size: 155%;
+}
 .right-section {
     display: flex;
     align-items: center;
