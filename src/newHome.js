@@ -1,7 +1,7 @@
-import {React,useEffect} from "react";
+import {React,useEffect, useState} from "react";
 import { collection, query, getDocs, limit } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import './newHome.css';
 import Layout2 from "./Layout/Layout2";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -19,13 +19,58 @@ const firebaseConfig = {
   const app = initializeApp(firebaseConfig);
   const firestore = getFirestore(app);
     
-const q = query(collection(firestore, "posts"), limit(5));
-const querySnapshot = await getDocs(q);
-var array = [];
-querySnapshot.forEach((doc) => {
-  array.push(doc);
-});
+
+async function getUserName(id){
+    var name = "Anonymous";
+    const userDocRef = doc(firestore, 'users', id);
+    const userDocSnapshot = await getDoc(userDocRef);
+    if (userDocSnapshot.exists()) {
+      name = userDocSnapshot.data()['Name'];
+    } else {
+      console.log('No such user!');
+    }
+    return name;
+}
+
 function NewHome(){
+    const [posts, getPost] = useState([]);
+    const [names, getNames] = useState([])
+    
+  useEffect(() => {
+    const fetchPostData = async () => {
+      try {
+        const q = query(collection(firestore, "posts"), limit(5));
+        const querySnapshot = await getDocs(q);
+
+        const fetchedPosts = querySnapshot.docs.map((doc) => (doc));
+
+        getPost(fetchedPosts);
+
+        
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
+    fetchPostData();
+  }, [firestore]); 
+  useEffect(()=>{
+    const fetchUserData = async()=>{
+        try{
+        const namePromises = posts.map(async (post) => {
+            const userDocRef = doc(firestore, 'users', post.data()['UserId']);
+            const userDocSnapshot = await getDoc(userDocRef);
+            return userDocSnapshot.exists() ? userDocSnapshot.data()['Name'] : 'Anonymous';
+          });
+          const fetchedNames = await Promise.all(namePromises);
+          getNames(fetchedNames);
+        }
+        catch(err){
+            console.error('hi' + err);
+        }
+    };
+    fetchUserData();
+  });
     useEffect(() => {
         // Set the document title when the component is mounted
         document.title = "Home";
@@ -40,6 +85,7 @@ function NewHome(){
     const queryParams = new URLSearchParams(location.search);
     const userid = queryParams.get('userid');
     const usertype = queryParams.get('usertype');
+    
     function postClick(id){
         if(usertype === 'normal'){
             var str = '/post?postid=' + id + '&userid=' + userid;
@@ -58,9 +104,23 @@ function NewHome(){
         <Layout2/>
         <div className="postbox">
             <div className="posts" >
-                {array.map((box) => (
+                {posts.map((box, id) => (
                     <div key={box} className="box">
                         <div className="post-box" onClick={postClick.bind(null, box.id)} >
+                        <img style={{
+                            display:"inline",
+                            marginRight:"1px"
+                        }} src="https://th.bing.com/th/id/R.6b0022312d41080436c52da571d5c697?rik=EBuuBNxzjeKhkQ&pid=ImgRaw&r=0" alt="Profile Picture" width={35}/>
+<h2 style={{
+                            color:"white",
+                            textAlign:"left",
+                            fontSize:"115%",
+                            display:"inline"
+                        }}>{names[id]}</h2>
+
+                            
+                            <h2 className="post-title">{box.data()['Title']}</h2>
+                            <p className="post-content">{box.data()['Content']}</p>
                             <h2 style={{
                             backgroundColor:
                             (box.data()['HypothesisVotes']>box.data()['ConspiracyVotes'])&&(box.data()['HypothesisVotes']>box.data()['MythVotes'])?
@@ -72,6 +132,7 @@ function NewHome(){
                             width:"max-content",
                             padding:"1%",
                             borderRadius:"15px",
+                            marginLeft:"85%"
                         }}>{
                             (box.data()['HypothesisVotes']>box.data()['ConspiracyVotes'])&&(box.data()['HypothesisVotes']>box.data()['MythVotes'])
                             ?"Hypothesis":
@@ -79,11 +140,8 @@ function NewHome(){
                             "Conspiracy":
                             (box.data()['MythVotes']>box.data()['HypothesisVotes'])&&(box.data()['MythVotes']>box.data()['ConspiracyVotes'])?
                             
-                            "Myth":""
+                            "Myth":"Pending"
                             } </h2>
-
-                            <h2 className="post-title">{box.data()['Title']}</h2>
-                            <p className="post-content">{box.data()['Content']}</p>
                         </div>
                     </div>
                 ))}

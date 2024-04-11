@@ -26,6 +26,7 @@ function Search(){
   const usertype = queryParams.get('usertype');
   var searchterm = queryParams.get('term');
   const [postData, setPostData] = useState([]);
+  const [names, getNames] = useState([])
 
   useEffect(() => {
     const fetchPostData = async () => {
@@ -53,6 +54,23 @@ function Search(){
 
     fetchPostData();
   }, [searchterm]);
+  useEffect(()=>{
+    const fetchUserData = async()=>{
+        try{
+        const namePromises = postData.map(async (post) => {
+            const userDocRef = doc(firestore, 'users', post.data()['UserId']);
+            const userDocSnapshot = await getDoc(userDocRef);
+            return userDocSnapshot.exists() ? userDocSnapshot.data()['Name'] : 'Anonymous';
+          });
+          const fetchedNames = await Promise.all(namePromises);
+          getNames(fetchedNames);
+        }
+        catch(err){
+            console.error('hi' + err);
+        }
+    };
+    fetchUserData();
+  });
   function postClick(id){
     if(usertype === 'normal'){
         var str = '/post?postid=' + id + '&userid=' + userId;
@@ -66,9 +84,23 @@ function Search(){
         <>
         <Layout2/>
         {postData.length > 0 ? (
-            postData.map((box) => (
+            postData.map((box, id) => (
               <div key={box} className="box">
-                <div className="post-box" onClick={postClick.bind(null, box.id)} >
+                        <div className="post-box" onClick={postClick.bind(null, box.id)} >
+                        <img style={{
+                            display:"inline",
+                            marginRight:"1px"
+                        }} src="https://th.bing.com/th/id/R.6b0022312d41080436c52da571d5c697?rik=EBuuBNxzjeKhkQ&pid=ImgRaw&r=0" alt="Profile Picture" width={35}/>
+<h2 style={{
+                            color:"white",
+                            textAlign:"left",
+                            fontSize:"115%",
+                            display:"inline"
+                        }}>{names[id]}</h2>
+
+                            
+                            <h2 className="post-title">{box.data()['Title']}</h2>
+                            <p className="post-content">{box.data()['Content']}</p>
                             <h2 style={{
                             backgroundColor:
                             (box.data()['HypothesisVotes']>box.data()['ConspiracyVotes'])&&(box.data()['HypothesisVotes']>box.data()['MythVotes'])?
@@ -80,6 +112,7 @@ function Search(){
                             width:"max-content",
                             padding:"1%",
                             borderRadius:"15px",
+                            marginLeft:"85%"
                         }}>{
                             (box.data()['HypothesisVotes']>box.data()['ConspiracyVotes'])&&(box.data()['HypothesisVotes']>box.data()['MythVotes'])
                             ?"Hypothesis":
@@ -87,13 +120,10 @@ function Search(){
                             "Conspiracy":
                             (box.data()['MythVotes']>box.data()['HypothesisVotes'])&&(box.data()['MythVotes']>box.data()['ConspiracyVotes'])?
                             
-                            "Myth":""
+                            "Myth":"Pending"
                             } </h2>
-
-                            <h2 className="post-title">{box.data()['Title']}</h2>
-                            <p className="post-content">{box.data()['Content']}</p>
                         </div>
-              </div>
+                    </div>
             ))
           ) : (
             <p style={{marginLeft:"15px"}}>No Results found.</p>
