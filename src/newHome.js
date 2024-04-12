@@ -1,10 +1,11 @@
 import {React,useEffect, useState} from "react";
 import { collection, query, getDocs, limit } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
 import './newHome.css';
 import Layout2 from "./Layout/Layout2";
 import { useNavigate, useLocation } from "react-router-dom";
+import ShareIcon from "./components/Icons/ShareIcon";
 import FloatingButton from "./components/floatingButton";
 const firebaseConfig = {
     apiKey: "AIzaSyCXoH3sRAs9i0aPMRgNCHjNAvnWIzAaT3Y",
@@ -34,8 +35,14 @@ async function getUserName(id){
 
 function NewHome(){
     const [posts, getPost] = useState([]);
-    const [names, getNames] = useState([])
-    
+    const [names, getNames] = useState([]);
+    const [activeTab, setActiveTab] = useState("tab0"); // Default active tab
+    const [Likes, setLikes] = useState("");
+
+    const handleTabClick = (tab) => {
+      setActiveTab(tab);
+  };
+
   useEffect(() => {
     const fetchPostData = async () => {
       try {
@@ -110,7 +117,7 @@ function NewHome(){
                         <img style={{
                             display:"inline",
                             marginRight:"1px"
-                        }} src="https://th.bing.com/th/id/R.6b0022312d41080436c52da571d5c697?rik=EBuuBNxzjeKhkQ&pid=ImgRaw&r=0" alt="Profile Picture" width={35}/>
+                        }} src="/user.png" alt="Profile Picture" width={35}/>
 <h2 style={{
                             color:"white",
                             textAlign:"left",
@@ -121,27 +128,36 @@ function NewHome(){
                             
                             <h2 className="post-title">{box.data()['Title']}</h2>
                             <p className="post-content">{box.data()['Content']}</p>
-                            <h2 style={{
-                            backgroundColor:
-                            (box.data()['HypothesisVotes']>box.data()['ConspiracyVotes'])&&(box.data()['HypothesisVotes']>box.data()['MythVotes'])?
-                            "green":
-                            (box.data()['ConspiracyVotes']>box.data()['HypothesisVotes'])&&(box.data()['ConspiracyVotes']>box.data()['MythVotes'])?
-                            "blue":
-                            (box.data()['MythVotes']>box.data()['HypothesisVotes'])&&(box.data()['MythVotes']>box.data()['ConspiracyVotes'])?
-                            "red":"black",
-                            width:"max-content",
-                            padding:"1%",
-                            borderRadius:"15px",
-                            marginLeft:"85%"
-                        }}>{
-                            (box.data()['HypothesisVotes']>box.data()['ConspiracyVotes'])&&(box.data()['HypothesisVotes']>box.data()['MythVotes'])
-                            ?"Hypothesis":
-                            (box.data()['ConspiracyVotes']>box.data()['HypothesisVotes'])&&(box.data()['ConspiracyVotes']>box.data()['MythVotes'])?
-                            "Conspiracy":
-                            (box.data()['MythVotes']>box.data()['HypothesisVotes'])&&(box.data()['MythVotes']>box.data()['ConspiracyVotes'])?
+                            <div style={{display:"flex"}}>
                             
-                            "Myth":"Pending"
-                            } </h2>
+                             <div className={`tab ${activeTab === "tab1" ? "active" : ""}`} id="likebutton">
+                             🤍Like</div>
+                              <div className={`tab ${activeTab === "tab2" ? "active" : ""}`} >💬Comment</div>
+                              <div className={`tab ${activeTab === "tab3" ? "active" : ""}`} ><ShareIcon /> Share</div>
+                              <div style={{
+                                backgroundColor:
+                                (box.data()['HypothesisVotes']>box.data()['ConspiracyVotes'])&&(box.data()['HypothesisVotes']>box.data()['MythVotes'])?
+                                "green":
+                                (box.data()['ConspiracyVotes']>box.data()['HypothesisVotes'])&&(box.data()['ConspiracyVotes']>box.data()['MythVotes'])?
+                                "blue":
+                                (box.data()['MythVotes']>box.data()['HypothesisVotes'])&&(box.data()['MythVotes']>box.data()['ConspiracyVotes'])?
+                                "red":"black",
+                                width:"max-content",
+                                padding:"1%",
+                                margin:"1%",
+                                marginTop:"1.5%",
+                                height:"max-content",
+                                borderRadius:"15px",
+                              }}>{
+                                (box.data()['HypothesisVotes']>box.data()['ConspiracyVotes'])&&(box.data()['HypothesisVotes']>box.data()['MythVotes'])
+                                ?"Hypothesis":
+                                (box.data()['ConspiracyVotes']>box.data()['HypothesisVotes'])&&(box.data()['ConspiracyVotes']>box.data()['MythVotes'])?
+                                "Conspiracy":
+                                (box.data()['MythVotes']>box.data()['HypothesisVotes'])&&(box.data()['MythVotes']>box.data()['ConspiracyVotes'])?
+                                
+                                "Myth":"Pending"
+                              } </div>
+                        </div>
                         </div>
                     </div>
                 ))}

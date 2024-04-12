@@ -121,7 +121,7 @@ const ChatComponent = ({data, userid}) => {
                 className={`scrollable-container scrolling`}
             >
                 {messages.map((message, index) => (
-                    <div
+                   <div
                         key={index}
                         style={{
                             alignSelf: message.sender === 'me' ?  'flex-end':'flex-start',
@@ -129,10 +129,20 @@ const ChatComponent = ({data, userid}) => {
                             color: message.sender === 'me' ? '#2c3e50':'#ffffff',
                             borderRadius: '8px',
                             padding: '8px',
+                            paddingTop:"0",
                             margin: '4px',
                             maxWidth: '70%',
                         }}
                     >
+                        <div style={{
+                            textAlign:"right",
+                            margin:"0",
+                            padding:"0"}}><img style={{display:"inline"}} src='https://cdn-icons-png.freepik.com/256/1077/1077114.png' width={15}></img>
+                            <p style={{
+                                color:"blue",
+                                display:"inline"
+                            }}>{message.sender}</p></div>
+                        
                         {message.text}
                     </div>
                 ))}

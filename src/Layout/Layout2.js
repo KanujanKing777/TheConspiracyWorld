@@ -83,7 +83,8 @@ const Layout2 = () => {
                     }}/></span>
                     <button type='button' onClick={()=>{
                         navigate('/profile?userid='+userid+'&usertype='+usertype);
-                    }}><span className='emoji'>&#x1F464;</span>Profile</button>
+                    }}><span className='emoji'><img src='/user.png' width={35} style={{display:"inline",
+                    marginRight:"0.01%"}}></img></span>Profile</button>
 
                 </div>
 
