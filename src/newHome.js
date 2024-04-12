@@ -117,7 +117,7 @@ function NewHome(){
                         <img style={{
                             display:"inline",
                             marginRight:"1px"
-                        }} src="/user.png" alt="Profile Picture" width={35}/>
+                        }} src="/user.png" alt="Profile" width={35}/>
 <h2 style={{
                             color:"white",
                             textAlign:"left",
