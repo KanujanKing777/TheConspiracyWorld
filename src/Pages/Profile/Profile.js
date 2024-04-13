@@ -81,7 +81,7 @@ function Profile() {
       <Layout2/>
       {userData && (
         <div class="profile-container">
-        <img class="profile-picture" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1024px-User_icon_2.svg.png" alt="Profile Picture"/>
+        <img class="profile-picture" src="user.png" alt="Profile Picture"/>
         <div class="user-info">
             <h2>{userData.Name}</h2>
             <p>{userData.Email}</p>

@@ -77,7 +77,7 @@ function NewHome(){
         }
     };
     fetchUserData();
-  });
+  }, [posts]);
     useEffect(() => {
         // Set the document title when the component is mounted
         document.title = "Home";

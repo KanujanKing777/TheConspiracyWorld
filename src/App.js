@@ -28,7 +28,7 @@ function App() {
 
         <Route path='/chatwithai' element={<Chatwithai />} />
         <Route path='/becomeanexpert' element={<ExpertPage />} />
-        <Route path='/Profile' element={<Profile />} />
+        <Route path='/profile' element={<Profile />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </Router>

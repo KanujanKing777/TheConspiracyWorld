@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, BrowserRouter } from 'react-router-dom';
 import Notification from "../../components/Notification";
 import './post.css';
 import shareicon from "../../components/Icons/ShareIcon";
