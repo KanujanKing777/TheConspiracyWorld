@@ -14,7 +14,7 @@ const Layout = () => {
       <div className="right-section">
         <ul className="nav-list">
           <div >
-            <li className="nav-item log">
+            <li className="nav-item log" style={{border:"none"}}>
               <Link to="/login" className="nav-link">Log in</Link>
             </li>
           </div>

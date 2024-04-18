@@ -8,7 +8,6 @@ const Layout2 = () => {
     const queryParams = new URLSearchParams(location.search);
     const userid = queryParams.get('userid');
     const usertype = queryParams.get('usertype');
-    const term = queryParams.get('term');
     function themeChange() {
         document.body.style.backgroundColor = "#ddd";
         document.body.style.color = "#333";
@@ -75,7 +74,7 @@ const Layout2 = () => {
                         color:"black",
                         padding:"3%",
                         paddingLeft:"5%"
-                    }} placeholder={term===""?term:"Search..."} onKeyUp={(event)=>{
+                    }} placeholder={"Search..."} onKeyUp={(event)=>{
                         if(event.keyCode === 13){
                         var term = document.getElementById("search").value;
                         navigate('/search?userid='+userid+'&usertype='+usertype+'&term='+term);

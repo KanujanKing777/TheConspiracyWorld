@@ -24,7 +24,7 @@ function Search(){
   const queryParams = new URLSearchParams(location.search);
   const userId = queryParams.get('userid');
   const usertype = queryParams.get('usertype');
-  var searchterm = queryParams.get('term');
+  var searchterm = (queryParams.get('term') === null)?"":queryParams.get('term');
   const [postData, setPostData] = useState([]);
   const [names, getNames] = useState([])
 
@@ -70,7 +70,7 @@ function Search(){
         }
     };
     fetchUserData();
-  });
+  }, [postData]);
   function postClick(id){
     if(usertype === 'normal'){
         var str = '/post?postid=' + id + '&userid=' + userId;
