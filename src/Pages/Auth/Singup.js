@@ -74,34 +74,45 @@ function Signup(){
   
   
   return (
-    <div className='whole'>
+    <div className='whole' style={{
+      padding:"1vh"
+    }}>
     <div className="signup-container">
       <form className="signup-form">
-        <h2>Sign Up</h2>
+        <h2  style={{
+            textAlign:'center',
+            fontSize:'5vh'
+          }}>Sign Up</h2>
         <label htmlFor="username">Username:</label>
         <input type="text" id="username" name="username" 
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className='formlogininput'
           required />
 
         <label htmlFor="email">Email:</label>
         <input type="email" id="email" name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className='formlogininput'
           required />
 
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required />
+          className='formlogininput'
+          required style={{
+            color:"black"
+          }}/>
 
         <label htmlFor="confirmPassword" id='confirmPassword'>Confirm Password:</label>
         <input type="password" name="confirmPassword" 
           value={passwordConfirm}
           onChange={(e) => setPasswordConfirm(e.target.value)}
+          className='formlogininput'
           required />
-        <button type="submit" onClick={handleFormSubmit}>Sign Up</button>
+        <button id='loginbutton' type="submit" onClick={handleFormSubmit}>Sign Up</button>
       </form>
     </div>
     </div>

@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -31,7 +32,15 @@ function ExpertPage() {
         "Genetics", "Medicine"
     ];
     var selectedlist = [];
-   
+    useEffect(() => {
+        // Set the document title when the component is mounted
+        document.title = 'Become an Expert';
+
+        // Optionally reset the title when the component is unmounted
+        return () => {
+            document.title = 'The Conspiracy World';
+        };
+    }, []);
     return (
         <>
             <div className='funtableselect'>

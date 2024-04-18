@@ -52,10 +52,10 @@
 }
 @media(max-width:900px) {
   .h1{
-    font-size: 3.5vw;
+    font-size: 1.5vw;
   }
   .App-logo{
-    width: 5vh;
+    width: 1.4vh;
   }
   .nav-item{
     width: 13.5vw;
@@ -71,9 +71,7 @@
   
 }
 @media(max-width:700px) {
-  .h1{
-    font-size: 3.1vw;
-  }
+ 
   #logoof{
     width: 5vh;
   }
@@ -91,7 +89,9 @@
   #trynow{
     width: 11vw;
   }
-  
+  h1{
+    font-size: 2.8vw;
+  }
 }
 
 .nav-link {

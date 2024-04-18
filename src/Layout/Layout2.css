@@ -1,68 +1,56 @@
-/* You can adjust these styles based on your design preferences */
-
-
+/* Base styles */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1vw 2vw;
     background-color: #000;
-    margin:0;
+    margin: 0;
     /* Adjust padding as needed */
-}
-#experti{
-    border:1px solid #16a34a;
-                            background-color:#052e16;
-                            padding:2vh;
-                            border-radius:15px;
-                            font-size:3.5vh;
-                            margin-top:1.6vh;
-                            height:9vh;
-}
-#experti:hover{
-    border-radius: 15px;
-    border: 1.5px solid #16a34a;
 }
 .left-section {
     display: flex;
-    align-items: space-around;
+    align-items: center;
 }
-.emoji{
-    font-size: 155%;
-}
+
 .right-section {
     display: flex;
     align-items: center;
 }
 
+#experti {
+    border: 1px solid #16a34a;
+    background-color: #052e16;
+    padding: 2vh;
+    border-radius: 15px;
+    font-size: 3.5vh;
+    margin-top: 1.6vh;
+    height: 9vh;
+}
+
+#experti:hover {
+    border-radius: 15px;
+    border: 1.5px solid #16a34a;
+}
+
 .App-logo {
     width: 7vh;
-    /* Adjust the width as needed */
     height: auto;
-    /* Maintain aspect ratio */
     margin-right: 1vw;
-    /* Adjust margin as needed */
 }
 
 h1 {
     margin: 0;
-    /* Remove default margin for h1 */
     color: white;
     font-size: 2vw;
     font-weight: 500;
 }
 
-#night{
-    width: 4vw;
-    text-align: center;
-    border: none;
-    background-color: transparent;
-    box-shadow: none;
-    font-size: 1.5rem;
-    border-radius: 100%;
-    margin:1vw;
+.emoji {
+    font-size: 155%;
 }
-#day{
+
+#night, #day {
     width: 4vw;
     text-align: center;
     border: none;
@@ -70,5 +58,19 @@ h1 {
     box-shadow: none;
     font-size: 1.5rem;
     border-radius: 100%;
-    margin:1vw;
+    margin: 1vw;
+}
+
+/* Media query for screens up to 800px width */
+@media (max-width: 800px) {
+    /* Change navbar layout to column */
+   
+    .navbar{
+        padding: 0;
+    }
+    
+    /* Adjust logo size for mobile */
+  
+
+    
 }

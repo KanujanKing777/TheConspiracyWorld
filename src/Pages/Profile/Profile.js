@@ -64,6 +64,15 @@ function Profile() {
 
     fetchPostData();
   }, [userId]);
+  useEffect(() => {
+    // Set the document title when the component is mounted
+    document.title = 'Profile';
+
+    // Optionally reset the title when the component is unmounted
+    return () => {
+        document.title = 'The Conspiracy World';
+    };
+}, [userData]);
   function postClick(id){
     if(usertype === 'normal'){
         var str = '/post?postid=' + id + '&userid=' + userId;

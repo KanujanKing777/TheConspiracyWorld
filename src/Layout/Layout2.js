@@ -93,8 +93,10 @@ const Layout2 = () => {
                             
                         }}  type='button' id='experti' onClick={()=>{
                             navigate('/becomeanexpert?userid='+userid+'');
+                        }}   onMouseEnter={()=>{
+                            document.getElementById('experti').innerHTML = 'Become an Expert';
                         }}>
-                            Become An Expert
+                            Expert
                         </button>
                         <button id='day'  type='button' onClick={themeChange2} hidden>
                             &#127769;

@@ -27,7 +27,15 @@ function Search(){
   var searchterm = (queryParams.get('term') === null)?"":queryParams.get('term');
   const [postData, setPostData] = useState([]);
   const [names, getNames] = useState([])
+  useEffect(() => {
+    // Set the document title when the component is mounted
+    document.title = searchterm;
 
+    // Optionally reset the title when the component is unmounted
+    return () => {
+        document.title = 'The Conspiracy World';
+    };
+}, [searchterm]);
   useEffect(() => {
     const fetchPostData = async () => {
       try {
@@ -90,7 +98,7 @@ function Search(){
                         <img style={{
                             display:"inline",
                             marginRight:"1px"
-                        }} src="https://th.bing.com/th/id/R.6b0022312d41080436c52da571d5c697?rik=EBuuBNxzjeKhkQ&pid=ImgRaw&r=0" alt="Profile Picture" width={35}/>
+                        }} src="user.png" alt="Profile" width={35}/>
 <h2 style={{
                             color:"white",
                             textAlign:"left",
