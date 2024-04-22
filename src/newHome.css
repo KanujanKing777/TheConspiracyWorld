@@ -30,14 +30,19 @@ body{
 }
 
 @media(max-width:900px) {
-    .post-box {
-        width: 80vw;
-    }
-}
-@media(max-width:800px) {
-    .post-box {
-        width: 75vw;
-    }
+  .post-box{
+    width: 100vw;
+    font-size: 2.5vh;
+  }
+  #likebutton{
+    font-size: 3vh;
+  }
+  #comment{
+    font-size: 3vh;
+  }
+  #share{
+    font-size: 3vh;
+  }
 }
 .post-title {
     font-size: 1.5rem;

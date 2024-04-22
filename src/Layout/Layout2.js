@@ -24,6 +24,14 @@ const Layout2 = () => {
             post.style.backgroundColor = '#eee';
             post.style.border = '1px solid #bbb';
         });
+        var users = document.querySelectorAll('.usernames');
+        users.forEach(function(post){
+            post.style.color = 'black';
+        });
+        var userss = document.querySelectorAll('.status');
+        userss.forEach(function(post){
+            post.style.color = 'black';
+        });
         var postss = document.querySelectorAll('.post-box:hover');
         postss.forEach(function(post){
             post.style.backgroundColor = '#ddd';
@@ -41,7 +49,14 @@ const Layout2 = () => {
         document.querySelector('h1').style.color = 'white';
         document.getElementById('day').hidden = true;
         document.getElementById('night').hidden = false;
-
+        var users = document.querySelectorAll('.usernames');
+        users.forEach(function(post){
+            post.style.color = 'white';
+        });
+        var userss = document.querySelectorAll('.status');
+        userss.forEach(function(post){
+            post.style.color = 'white';
+        });
         var posts = document.querySelectorAll('.post-box');
         posts.forEach(function(post){
             post.style.color = 'white';
@@ -65,10 +80,10 @@ const Layout2 = () => {
                         
                     }} type='button' onClick={()=>{
                         navigate('/home?userid='+userid+'&usertype='+usertype);
-                    }}><span className='emoji'>&#127968;</span>Home</button>
+                    }}><span className='emoji' id='emojii'>&#127968;</span></button>
                     <span style={{
                         marginLeft:"15px"
-                    }} type='button'><span className='emoji'>&#128269;</span><input id='search' type='search' style={{
+                    }} type='button'><span className='emoji' id='emoji'>&#128269;</span><input id='search' type='search' style={{
                         width:"80%",
                         borderRadius:"15px",
                         color:"black",
@@ -82,14 +97,14 @@ const Layout2 = () => {
                     }}/></span>
                     <button type='button' onClick={()=>{
                         navigate('/profile?userid='+userid+'&usertype='+usertype);
-                    }}><span className='emoji'><img src='/user.png' width={35} style={{display:"inline",
-                    marginRight:"0.01%"}}></img></span>Profile</button>
+                    }}><span className='emoji'><img src='/user.png' id='emojiii' width={35} style={{display:"inline",
+                    marginRight:"0.01%"}}></img></span></button>
 
                 </div>
 
                 <span className="right-section">
                     <ul className="nav-list">
-                        <button style={{
+                        {/* <button style={{
                             
                         }}  type='button' id='experti' onClick={()=>{
                             navigate('/becomeanexpert?userid='+userid+'');
@@ -97,13 +112,13 @@ const Layout2 = () => {
                             document.getElementById('experti').innerHTML = 'Become an Expert';
                         }}>
                             Expert
-                        </button>
-                        <button id='day'  type='button' onClick={themeChange2} hidden>
+                        </button> */}
+                        {/* <button id='day'  type='button' onClick={themeChange2} hidden>
                             &#127769;
                         </button>
                         <button id='night' type='button' onClick={themeChange}>
                             &#9728;
-                        </button>
+                        </button> */}
                     </ul>
                 </span>
             </nav >

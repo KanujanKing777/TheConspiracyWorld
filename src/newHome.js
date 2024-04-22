@@ -118,7 +118,7 @@ function NewHome(){
                             display:"inline",
                             marginRight:"1px"
                         }} src="/user.png" alt="Profile" width={35}/>
-<h2 style={{
+<h2 className="usernames"style={{
                             color:"white",
                             textAlign:"left",
                             fontSize:"115%",
@@ -132,8 +132,8 @@ function NewHome(){
                             
                              <div className={`tab ${activeTab === "tab1" ? "active" : ""}`} id="likebutton">
                              🤍Like</div>
-                              <div className={`tab ${activeTab === "tab2" ? "active" : ""}`} >💬Comment</div>
-                              <div className={`tab ${activeTab === "tab3" ? "active" : ""}`} ><ShareIcon /> Share</div>
+                              <div className={`tab ${activeTab === "tab2" ? "active" : ""}`} id="comment">💬Comment</div>
+                              <div className={`tab ${activeTab === "tab3" ? "active" : ""}`} id="share">&#x1F4E5;Share</div>
                               <div style={{
                                 backgroundColor:
                                 (box.data()['HypothesisVotes']>box.data()['ConspiracyVotes'])&&(box.data()['HypothesisVotes']>box.data()['MythVotes'])?
@@ -141,14 +141,14 @@ function NewHome(){
                                 (box.data()['ConspiracyVotes']>box.data()['HypothesisVotes'])&&(box.data()['ConspiracyVotes']>box.data()['MythVotes'])?
                                 "blue":
                                 (box.data()['MythVotes']>box.data()['HypothesisVotes'])&&(box.data()['MythVotes']>box.data()['ConspiracyVotes'])?
-                                "red":"black",
+                                "red":"grey",
                                 width:"max-content",
                                 padding:"1%",
                                 margin:"1%",
                                 marginTop:"1.5%",
                                 height:"max-content",
                                 borderRadius:"15px",
-                              }}>{
+                              }} className="status">{
                                 (box.data()['HypothesisVotes']>box.data()['ConspiracyVotes'])&&(box.data()['HypothesisVotes']>box.data()['MythVotes'])
                                 ?"Hypothesis":
                                 (box.data()['ConspiracyVotes']>box.data()['HypothesisVotes'])&&(box.data()['ConspiracyVotes']>box.data()['MythVotes'])?

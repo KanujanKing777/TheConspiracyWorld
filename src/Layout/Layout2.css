@@ -64,11 +64,30 @@ h1 {
 /* Media query for screens up to 800px width */
 @media (max-width: 800px) {
     /* Change navbar layout to column */
-   
+    .App-logo {
+        width: 5vh;
+        padding-left: 1vh;
+        height: auto;
+        margin-right: 1vw;
+    }
     .navbar{
         padding: 0;
     }
-    
+    #experti{
+        padding: 0;
+        font-size: 2.5vh;
+        height: auto;
+    }
+    #emoji{
+        font-size: 3.2vh;
+    }
+    #emojii{
+        font-size: 3.2vh;
+    }
+    #emojiii{
+        height: 5vh;
+        width: 5vh;
+    }
     /* Adjust logo size for mobile */
   
 
