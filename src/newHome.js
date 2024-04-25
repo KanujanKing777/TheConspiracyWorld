@@ -1,4 +1,4 @@
-import {React,useEffect, useState} from "react";
+import {React,useEffect, useState, useRef} from "react";
 import { collection, query, getDocs, limit } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
@@ -34,6 +34,21 @@ async function getUserName(id){
 }
 
 function NewHome(){
+  const adRef = useRef();
+  useEffect(() => {
+    if (adRef.current) {
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = '//www.topcreativeformat.com/9ba6b1544c321fcda020910dcf5ccc39/invoke.js';
+      adRef.current.appendChild(script);
+
+      return () => {
+        // Cleanup: remove the script when the component unmounts
+        adRef.current.removeChild(script);
+      };
+    }
+  }, []);
     const [posts, getPost] = useState([]);
     const [names, getNames] = useState([]);
     const [activeTab, setActiveTab] = useState("tab0"); // Default active tab
@@ -159,6 +174,9 @@ function NewHome(){
                               } </div>
                         </div>
                         </div>
+                        <div ref={adRef}>
+      {/* This div will contain the ad */}
+    </div>
                     </div>
                 ))}
             </div>
