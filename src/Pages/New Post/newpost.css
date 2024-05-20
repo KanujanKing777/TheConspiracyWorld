@@ -16,6 +16,19 @@
     width: 45vw;
     scrollbar-width: thin;
 }
+.text-input{
+    color:black;
+    padding: 1%;
+    border-radius: 5px;
+}
+textarea{
+    border-radius: 5px;
+    color: black;
+}
+#content{
+    color:black;
+    padding:1%;
+}
 #ref-in{
     width: 90%;
     margin-right: 1%;
@@ -41,6 +54,7 @@ textarea {
     resize: none;
     overflow-y: auto;
     scrollbar-width: thin;
+    color:black;
 }
 
 .Post {
@@ -74,4 +88,7 @@ textarea:focus {
     margin-right: 0.5vw;
     border-radius: 7px;
     padding: 1px;
+}
+.Post:hover{
+    border-radius: 7px;
 }

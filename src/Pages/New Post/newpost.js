@@ -105,11 +105,26 @@ function Newpost() {
                     <label>References:</label>
                     <div className="title">
                         <input className="text-input" id="ref-in" type="text" />
-                        <button className="add" onClick={add} type="button">+</button>
+                        <button className="add" onClick={add} type="button" style={{
+                            fontSize: "150%",
+                            paddingLeft:"2%",
+                            paddingRight:"2%",
+                            width:"max-content",
+                            backgroundColor: "#555555",
+                            color:"InfoBackground",
+                            borderRadius:"5px"
+                        }}>+</button>
                         <div id="refp" hidden> </div>
                     </div>
 
-                    <button type="button" className="Post" onClick={PostTheory}>Post</button>
+                    <button type="button" className="Post" onClick={PostTheory} style={{
+                        fontSize: "100%",
+                        width: "100%",
+                        padding: "1%",
+                        textAlign:"center",
+                        marginTop:"2%",
+                        border:"1px solid white"
+                    }}>Post</button>
                 </form>
             </div>
         </div>
