@@ -168,14 +168,13 @@ function PostClient() {
                                 
                             }}></div>
                             <div className={`tab ${activeTab === "tab2" ? "active" : ""}`} onClick={() => handleTabClick("tab2")}>💬Comment</div>
-                            <div className={`tab ${activeTab === "tab3" ? "active" : ""}`} onClick={() => handleTabClick('tab3')}><ShareIcon /> Share</div>
+                            <div className={`tab ${activeTab === "tab3" ? "active" : ""}`} onClick={() => handleTabClick('tab3')}><img src="share.png" width={20} style={{display:"inline"}}></img> Share</div>
                         </div>
                         <div className="tabContent">
                             {activeTab === "tab1" && <div className="tabc"></div>}
                             {activeTab === "tab2" && <div className="tabc" id="ref" ><ChatComponent data={postid} userid={userid} /></div>}
                             {activeTab === "tab3" && <div className="tabc" > 
                                 <div id="popup" className="popup">
-                                    Copy URL
                                     <button type="button" onClick={copyfun}>📄 Copy Link</button>
                                 </div>
                             </div>}

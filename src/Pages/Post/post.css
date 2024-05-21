@@ -18,6 +18,7 @@
 }
 .sticky{
     position: sticky;
+    position: -webkit-sticky;
     bottom: 5px;
     background-color: #334477;
     margin-left: 1vh;
@@ -36,7 +37,7 @@
     cursor: pointer;
     border-radius: 15px;
     transition: background-color 0.3s;
-    font-size: calc(5px + 3vmin);
+    font-size: 3.3vh;
 }
 
 .tab:hover {

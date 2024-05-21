@@ -107,7 +107,7 @@ function Profile() {
                             (box.data()['ConspiracyVotes']>box.data()['HypothesisVotes'])&&(box.data()['ConspiracyVotes']>box.data()['MythVotes'])?
                             "blue":
                             (box.data()['MythVotes']>box.data()['HypothesisVotes'])&&(box.data()['MythVotes']>box.data()['ConspiracyVotes'])?
-                            "red":"black",
+                            "red":"grey",
                             width:"max-content",
                             padding:"1%",
                             borderRadius:"15px",
@@ -118,7 +118,7 @@ function Profile() {
                             "Conspiracy":
                             (box.data()['MythVotes']>box.data()['HypothesisVotes'])&&(box.data()['MythVotes']>box.data()['ConspiracyVotes'])?
                             
-                            "Myth":""
+                            "Myth":"Pending"
                             } </h2>
 
                             <h2 className="post-title">{box.data()['Title']}</h2>

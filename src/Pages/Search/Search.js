@@ -24,7 +24,7 @@ function Search(){
   const queryParams = new URLSearchParams(location.search);
   const userId = queryParams.get('userid');
   const usertype = queryParams.get('usertype');
-  var searchterm = (queryParams.get('term') === null)?"":queryParams.get('term');
+  var searchterm = (queryParams.get('term') === null)?"":queryParams.get('term').toLowerCase();
   const [postData, setPostData] = useState([]);
   const [names, getNames] = useState([])
   useEffect(() => {
@@ -45,15 +45,19 @@ function Search(){
           const posts = [];
           querySnapshot.forEach((doc) => {
             var title = doc.data()['Title'];
+            title = title.toLowerCase();
+            
             if(title.includes(searchterm)){
                 posts.push(doc);
             }
             var content = doc.data()['Content'];
+            content = content.toLowerCase();
             if(content.includes(searchterm)){
                 posts.push(doc);
             }
           });
-          setPostData(posts);
+          let postsuniq = [...new Set(posts)];
+          setPostData(postsuniq);
         
       } catch (error) {
         console.error('Error fetching posts:', error);
@@ -95,16 +99,13 @@ function Search(){
             postData.map((box, id) => (
               <div key={box} className="box">
                         <div className="post-box" onClick={postClick.bind(null, box.id)} >
-                        <img style={{
-                            display:"inline",
-                            marginRight:"1px"
-                        }} src="user.png" alt="Profile" width={35}/>
-<h2 style={{
-                            color:"white",
+                        <img style={{display:"inline", marginBottom:"7px"}} src='https://static.vecteezy.com/system/resources/previews/011/947/163/non_2x/gold-user-icon-free-png.png' width={20}></img>
+<h2 className="usernames"style={{
+                            color:"#FFD700",
                             textAlign:"left",
                             fontSize:"115%",
-                            display:"inline"
-                        }}>{names[id]}</h2>
+                            display:"inline",
+                        }}> {names[id]}</h2>
 
                             
                             <h2 className="post-title">{box.data()['Title']}</h2>
@@ -116,7 +117,7 @@ function Search(){
                             (box.data()['ConspiracyVotes']>box.data()['HypothesisVotes'])&&(box.data()['ConspiracyVotes']>box.data()['MythVotes'])?
                             "blue":
                             (box.data()['MythVotes']>box.data()['HypothesisVotes'])&&(box.data()['MythVotes']>box.data()['ConspiracyVotes'])?
-                            "red":"black",
+                            "red":"grey",
                             width:"max-content",
                             padding:"1%",
                             borderRadius:"15px",

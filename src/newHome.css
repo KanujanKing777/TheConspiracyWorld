@@ -6,16 +6,30 @@
     height: fit-content;
 }
 body{
-    background-color: #111;
+    background-color: #1C1C1C;
     color: white;
 }
-
+h2{
+  color:#FFFFFF;
+}
+p{
+  color:#D3D3D3;
+}
+#likebutton{
+  font-size: 3.3vh;
+}
+#comment{
+  font-size: 3.3vh;
+}
+#share{
+  font-size: 3.3vh;
+}
 .post-box {
     border: 1px solid #555;
     border-radius: 12px;
     padding: 20px;
     margin: 10vh;
-    width: 50vw;
+    width: 55vw;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     background-color: rgba(255, 255, 255, 0.05);
     text-overflow:clip;
@@ -29,9 +43,23 @@ body{
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-@media(max-width:900px) {
+
+.post-title {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.post-content {
+    font-size: 1.1rem;
+    text-overflow: clip;
+    max-height: 30vh;
+    height: max-content;
+    overflow: hidden;
+}
+
+@media(max-width:1100px) {
   .post-box{
-    width: 100vw;
+    width: 80vw;
     font-size: 2.5vh;
   }
   #likebutton{
@@ -44,15 +72,18 @@ body{
     font-size: 3vh;
   }
 }
-.post-title {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
-}
-
-.post-content {
-    font-size: 1.1rem;
-    text-overflow: clip;
-    max-height: 30vh;
-    height: max-content;
-    overflow: hidden;
+@media(max-width:800px) {
+  .post-box{
+    width: 97vw;
+    font-size: 2.5vh;
+  }
+  #likebutton{
+    font-size: 3vh;
+  }
+  #comment{
+    font-size: 3vh;
+  }
+  #share{
+    font-size: 3vh;
+  }
 }

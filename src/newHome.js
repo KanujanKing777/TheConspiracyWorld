@@ -129,16 +129,13 @@ function NewHome(){
                 {posts.map((box, id) => (
                     <div key={box} className="box">
                         <div className="post-box" onClick={postClick.bind(null, box.id)} >
-                        <img style={{
-                            display:"inline",
-                            marginRight:"1px"
-                        }} src="/user.png" alt="Profile" width={35}/>
+                        <img style={{display:"inline", marginBottom:"7px"}} src='https://static.vecteezy.com/system/resources/previews/011/947/163/non_2x/gold-user-icon-free-png.png' width={20}></img>
 <h2 className="usernames"style={{
-                            color:"white",
+                            color:"#FFD700",
                             textAlign:"left",
                             fontSize:"115%",
-                            display:"inline"
-                        }}>{names[id]}</h2>
+                            display:"inline",
+                        }}> {names[id]}</h2>
 
                             
                             <h2 className="post-title">{box.data()['Title']}</h2>
@@ -148,7 +145,7 @@ function NewHome(){
                              <div className={`tab ${activeTab === "tab1" ? "active" : ""}`} id="likebutton">
                              🤍Like</div>
                               <div className={`tab ${activeTab === "tab2" ? "active" : ""}`} id="comment">💬Comment</div>
-                              <div className={`tab ${activeTab === "tab3" ? "active" : ""}`} id="share">&#x1F4E5;Share</div>
+                              <div className={`tab ${activeTab === "tab3" ? "active" : ""}`} id="share"><img src="share.png" width={20} style={{display:"inline"}}></img> Share</div>
                               <div style={{
                                 backgroundColor:
                                 (box.data()['HypothesisVotes']>box.data()['ConspiracyVotes'])&&(box.data()['HypothesisVotes']>box.data()['MythVotes'])?
