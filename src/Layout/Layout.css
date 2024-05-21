@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 10vh;
   padding: 1vw 2vw;
   /* Adjust padding as needed */
 }
@@ -47,7 +48,7 @@
 .nav-item {
   /* Adjust margin between items as needed */
   margin:1vh;
-  font-size: 1.7vw;
+  font-size: 1.4vw;
   text-align: center;
 }
 @media(max-width:900px) {
@@ -107,18 +108,15 @@
   width: 9vw;
   border: 1px solid white;
   border-radius: 15px;
-  padding: 1vh;
+  padding-bottom: 1vh;
 
   text-align: center;
 }
 .try:hover{
-  width: 11vw;
   background-color: white;
   #trytext {
     color:black;
   }
-  #trytext::after{
-    content: '✨';
-  }
+
 }
 

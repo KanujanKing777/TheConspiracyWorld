@@ -12,7 +12,7 @@ import PostClient from './Pages/Post/postClient';
 import ExpertPage from './Pages/becomeAnExpert';
 import Profile from './Pages/Profile/Profile';
 import Search from './Pages/Search/Search';
-
+import Learnmore from './Static Pages/LearnMore';
 function App() {
   return (
     <Router>
@@ -26,7 +26,7 @@ function App() {
         <Route path='/postExpert' element={<Post />} />
         <Route path='/post' element={<PostClient />} />
         <Route path='/search' element={<Search />} />
-
+        <Route path='/learnmore' element={<Learnmore />} />
         <Route path='/chatwithai' element={<Chatwithai />} />
         <Route path='/becomeanexpert' element={<ExpertPage />} />
         <Route path='/profile' element={<Profile />} />

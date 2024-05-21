@@ -5,14 +5,19 @@ const Layout = () => {
   return (
     <>
 
-      <nav className="navbar">
-        <div className="left-section">
-          <img src='/yinyang.png' className='App-logo applogo' id="logoof" alt='logo' />
-          <h1 className="h1">The Conspiracy World</h1>
+    <nav className="navbar">
+      <div className="left-section">
+        <img src='/yinyang.png' className='App-logo applogo' id="logoof" alt='logo' />
+        <h1 className="h1">The Conspiracy World</h1>
       </div>
 
       <div className="right-section">
         <ul className="nav-list">
+        <div >
+            <li className="nav-item log" style={{border:"none"}}>
+              <Link to="/learnmore" className="nav-link">Learn More</Link>
+            </li>
+          </div>
           <div >
             <li className="nav-item log" style={{border:"none"}}>
               <Link to="/login" className="nav-link">Log in</Link>
