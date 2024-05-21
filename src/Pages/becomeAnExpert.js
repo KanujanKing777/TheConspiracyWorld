@@ -29,7 +29,7 @@ function ExpertPage() {
     const userid = queryParams.get('userid');
     const categorieslist = [
         "Astrophysics", "Modern Physics", "Quantum Physics", "Biology", "Mathematics",
-        "Genetics", "Medicine"
+        "Genetics", "Particle Physics", "Extraterrestial Life"
     ];
     var selectedlist = [];
     useEffect(() => {
@@ -73,7 +73,7 @@ function ExpertPage() {
 
                     </ul>
 
-                    <p className="fundudede">Describe your Talents</p>
+                    <p className="fundudede">Describe about your career in the selected fields</p>
                     <textarea style={{
                         backgroundColor: "#353535",
                         padding: "1vh",
@@ -104,7 +104,7 @@ function ExpertPage() {
                                 ExpertAt:selectedlist.join(' '),
                                 Talent: talents,
                             });
-                            alert('Request Sent');
+                            alert('Request Sent. We will sooner contact you through email');
                         }}>Submit</li>
                     </ul>
                 </div>
