@@ -28,8 +28,6 @@ function Learnmore(){
             A person who is working on a research on Extraterrestial Life is an expert in the field of Extraterrestial Life.<br/>
             👉Only an Expert in the respective field can vote a post [A Conspiracy Theory], whether it is a Fact, Conspiracy, or a Myth.<br/>
             👉Click this <Link to="/becomeanexpert" className="nav-link">link</Link> to become an Expert
-
-
             </p>
             <br/>
             <h3 style={{

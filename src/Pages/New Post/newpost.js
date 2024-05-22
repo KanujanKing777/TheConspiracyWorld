@@ -75,16 +75,9 @@ function Newpost() {
         p.style.display = "block";
         var data = document.getElementById('ref-in').value;
         if (data.startsWith('http')) {
-            if (
-                data.includes('facebook.com') || data.includes('instagram.com') ||
-                data.includes('youtube.com') || data.includes('twitter.com') ||
-                data.includes('snapchat.com') || data.includes('reddit.com') ||
-                data.includes('whatsapp.com')) {
-                alert('Social Media posts cannot be considered as a reference.');
-            }
-            else {
+            
                 p.innerHTML += data + "<br>";
-            }
+            
 
         }
         else {

@@ -57,11 +57,13 @@ textarea {
     color:black;
 }
 
-.Post {
-}
+
 .add{
     width: 38px;
     height: auto;
+}
+input,textarea{
+    background-color: #cfcfcf;
 }
 input:focus {
     border: none;
