@@ -6,6 +6,7 @@ import './newHome.css';
 import Layout2 from "./Layout/Layout2";
 import { useNavigate, useLocation } from "react-router-dom";
 import ShareIcon from "./components/Icons/ShareIcon";
+import { Helmet } from 'react-helmet';
 import FloatingButton from "./components/floatingButton";
 const firebaseConfig = {
     apiKey: "AIzaSyCXoH3sRAs9i0aPMRgNCHjNAvnWIzAaT3Y",
@@ -34,21 +35,7 @@ async function getUserName(id){
 }
 
 function NewHome(){
-  const adRef = useRef();
-  useEffect(() => {
-    if (adRef.current) {
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.async = true;
-      script.src = '//www.topcreativeformat.com/9ba6b1544c321fcda020910dcf5ccc39/invoke.js';
-      adRef.current.appendChild(script);
-
-      return () => {
-        // Cleanup: remove the script when the component unmounts
-        adRef.current.removeChild(script);
-      };
-    }
-  }, []);
+ 
     const [posts, getPost] = useState([]);
     const [names, getNames] = useState([]);
     const [activeTab, setActiveTab] = useState("tab0"); // Default active tab
@@ -102,6 +89,29 @@ function NewHome(){
           document.title = 'The Conspiracy World';
         };
       }, []);
+      useEffect(() => {
+        // JavaScript code
+        window.atOptions = {
+          'key': '9ba6b1544c321fcda020910dcf5ccc39',
+          'format': 'iframe',
+          'height': 300,
+          'width': 160,
+          'params': {}
+        };
+    
+        // Load external script
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = '//www.topcreativeformat.com/9ba6b1544c321fcda020910dcf5ccc39/invoke.js';
+        script.async = true;
+        const divBoxes = document.querySelectorAll('.ads');
+      divBoxes.forEach((box, index) => {
+        box.appendChild(script);
+      });
+    
+        // Clean up function to remove the script when the component unmounts
+        
+      }, []); // em
     const navigate = useNavigate();
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
@@ -119,7 +129,7 @@ function NewHome(){
         }
         
     }
-    
+  
     return (
         
         <>
@@ -129,7 +139,7 @@ function NewHome(){
                 {posts.map((box, id) => (
                     <div key={box} className="box">
                         <div className="post-box" onClick={postClick.bind(null, box.id)} >
-                        <img style={{display:"inline", marginBottom:"7px"}} src='https://static.vecteezy.com/system/resources/previews/011/947/163/non_2x/gold-user-icon-free-png.png' width={20}></img>
+                        <img alt="user" style={{display:"inline", marginBottom:"7px"}} src='https://static.vecteezy.com/system/resources/previews/011/947/163/non_2x/gold-user-icon-free-png.png' width={20}></img>
 <h2 className="usernames"style={{
                             color:"#FFD700",
                             textAlign:"left",
@@ -168,14 +178,19 @@ function NewHome(){
                                 (box.data()['MythVotes']>box.data()['HypothesisVotes'])&&(box.data()['MythVotes']>box.data()['ConspiracyVotes'])?
                                 
                                 "Myth":"Pending"
-                              } </div>
+                              } 
+                              </div>
+                          </div>
                         </div>
-                        </div>
-                        <div ref={adRef}>
-      {/* This div will contain the ad */}
-    </div>
-                    </div>
-                ))}
+                          <div className="ads"> </div>
+                          <Helmet>
+                          <script type="text/javascript" src="//www.topcreativeformat.com/f31f8dc606a3a8198182b37942559608/invoke.js"></script>
+                          <script type="text/javascript" src="//www.topcreativeformat.com/f31f8dc606a3a8198182b37942559608/invoke.js"></script>
+
+                          </Helmet>
+                </div>
+              ))}
+
             </div>
             <FloatingButton idbro={userid} usertypebro={usertype}/>
 

@@ -163,7 +163,8 @@ const ChatComponent = ({data, userid}) => {
                         bottom: 5,
                         right: 100,
                         height: 35,
-                        outline: 'none'
+                        outline: 'none',
+                        color:"black"
                     }}
                 />
                 <button

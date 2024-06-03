@@ -124,7 +124,7 @@ const VotingBox = (docID) => {
             className='votingbutton'
             id='support'
           >
-            Hypothesis
+            Fact
           </button>
         </div>
         <div className="oppose">

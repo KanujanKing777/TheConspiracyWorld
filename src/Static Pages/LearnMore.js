@@ -38,14 +38,14 @@ function Learnmore(){
             There are 4 catalogs determined according to the votes of Experts of the respective world <br/>
            
             <tr>
-                <td>👉Hypothesis</td>
-                <td>:- A theory that is based on a proven fact, and can be proved theoratically, but unable to prove practically with our current capabilities<br/></td>
+                <td>👉Fact</td>
+                <td>:- A theory that is based on a proven fact, or that can be proved either theoratically, or practically<br/></td>
             </tr><tr>
                 <td>👉Conspiracy</td>
                 <td>:- A theory that is neither provable nor disprovable.<br/></td>
             </tr><tr>
                 <td>👉Myth</td>
-                <td>:- A theory that can be disproved practically with experiments and observations.<br/></td>
+                <td>:- A theory that can be disproved either theoratically or practically<br/></td>
             </tr>
             <tr>
                 <td>👉Pending</td>
