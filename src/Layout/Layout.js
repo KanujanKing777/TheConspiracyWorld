@@ -13,7 +13,7 @@ const Layout = () => {
 
       <div className="right-section">
         <ul className="nav-list">
-        <div >
+        <div>
             <li className="nav-item log" style={{border:"none"}}>
               <Link to="/learnmore" className="nav-link">Learn More</Link>
             </li>

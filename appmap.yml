@@ -1,0 +1,8 @@
+name: yin_yang_web
+language: javascript
+appmap_dir: tmp/appmap
+packages:
+  - path: .
+    exclude:
+      - node_modules
+      - .yarn

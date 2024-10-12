@@ -89,29 +89,7 @@ function NewHome(){
           document.title = 'The Conspiracy World';
         };
       }, []);
-      useEffect(() => {
-        // JavaScript code
-        window.atOptions = {
-          'key': '9ba6b1544c321fcda020910dcf5ccc39',
-          'format': 'iframe',
-          'height': 300,
-          'width': 160,
-          'params': {}
-        };
-    
-        // Load external script
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = '//www.topcreativeformat.com/9ba6b1544c321fcda020910dcf5ccc39/invoke.js';
-        script.async = true;
-        const divBoxes = document.querySelectorAll('.ads');
-      divBoxes.forEach((box, index) => {
-        box.appendChild(script);
-      });
-    
-        // Clean up function to remove the script when the component unmounts
-        
-      }, []); // em
+      
     const navigate = useNavigate();
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
@@ -129,7 +107,8 @@ function NewHome(){
         }
         
     }
-  
+    
+
     return (
         
         <>
@@ -182,12 +161,11 @@ function NewHome(){
                               </div>
                           </div>
                         </div>
-                          <div className="ads"> </div>
-                          <Helmet>
-                          <script type="text/javascript" src="//www.topcreativeformat.com/f31f8dc606a3a8198182b37942559608/invoke.js"></script>
-                          <script type="text/javascript" src="//www.topcreativeformat.com/f31f8dc606a3a8198182b37942559608/invoke.js"></script>
-
-                          </Helmet>
+                        <div class="ad-container">
+                          <div class="ad-header">Ads</div>
+                          <iframe title="ads" class="ad-iframe" src="https://vaikijie.net/4/7569653"></iframe>
+                          <a style={{color:"white"}} class="ad-button" href="https://vaikijie.net/4/7569653" rel="noreferrer" target="_blank">Click Here</a>
+                        </div>
                 </div>
               ))}
 
