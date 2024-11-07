@@ -161,11 +161,7 @@ function NewHome(){
                               </div>
                           </div>
                         </div>
-                        <div class="ad-container">
-                          <div class="ad-header">Ads</div>
-                          <iframe title="ads" class="ad-iframe" src="https://vaikijie.net/4/7569653"></iframe>
-                          <a style={{color:"white"}} class="ad-button" href="https://vaikijie.net/4/7569653" rel="noreferrer" target="_blank">Click Here</a>
-                        </div>
+                       
                 </div>
               ))}
 
