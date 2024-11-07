@@ -47,3 +47,91 @@ header {
     border-radius: 8px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.icon {
+    cursor: pointer;
+    font-size: 1rem;
+    color: #c6c5c5;
+}
+
+.icon:hover {
+    color: #555;
+}
+
+
+/* Edit Form Header */
+.edit-form-header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Edit Form Container */
+.edit-form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f900;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Fields */
+.edit-form-container input[type="text"],
+.edit-form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #3b3b3b;
+}
+
+/* Form Buttons */
+.edit-form-container .button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-form-container button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-form-container .save-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.edit-form-container .save-button:hover {
+    background-color: #45a049;
+}
+
+.edit-form-container .cancel-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.edit-form-container .cancel-button:hover {
+    background-color: #e31e1e;
+}
