@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import './Layout2.css'; // Create a separate CSS file for styling
 import { BrowserRouter as Router, Routes, Route, redirect, useNavigate } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
@@ -8,6 +9,28 @@ const Layout2 = () => {
     const queryParams = new URLSearchParams(location.search);
     const userid = queryParams.get('userid');
     const usertype = queryParams.get('usertype');
+
+
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+
+    useEffect(() => {
+        setIsLoggedIn(!!localStorage.getItem('token'));
+    }, []);
+
+    const handleAuthButtonClick = () => {
+        if (isLoggedIn) {
+            // Remove token to log out
+            localStorage.removeItem('token');
+            setIsLoggedIn(false);
+            navigate('/login');
+        } else {
+            // Navigate to login page if not logged in
+            navigate('/login');
+        }
+    };
+
+
+
     function themeChange() {
         document.body.style.backgroundColor = "#ddd";
         document.body.style.color = "#333";
@@ -19,25 +42,25 @@ const Layout2 = () => {
         document.getElementById('night').hidden = true;
 
         var posts = document.querySelectorAll('.post-box');
-        posts.forEach(function(post){
+        posts.forEach(function (post) {
             post.style.color = '#333';
             post.style.backgroundColor = '#eee';
             post.style.border = '1px solid #bbb';
         });
         var users = document.querySelectorAll('.usernames');
-        users.forEach(function(post){
+        users.forEach(function (post) {
             post.style.color = 'black';
         });
         var userss = document.querySelectorAll('.status');
-        userss.forEach(function(post){
+        userss.forEach(function (post) {
             post.style.color = 'black';
         });
         var postss = document.querySelectorAll('.post-box:hover');
-        postss.forEach(function(post){
+        postss.forEach(function (post) {
             post.style.backgroundColor = '#ddd';
         });
-        
-        
+
+
 
     }
     function themeChange2() {
@@ -50,25 +73,28 @@ const Layout2 = () => {
         document.getElementById('day').hidden = true;
         document.getElementById('night').hidden = false;
         var users = document.querySelectorAll('.usernames');
-        users.forEach(function(post){
+        users.forEach(function (post) {
             post.style.color = 'white';
         });
         var userss = document.querySelectorAll('.status');
-        userss.forEach(function(post){
+        userss.forEach(function (post) {
             post.style.color = 'white';
         });
         var posts = document.querySelectorAll('.post-box');
-        posts.forEach(function(post){
+        posts.forEach(function (post) {
             post.style.color = 'white';
             post.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
             post.style.border = '1px solid #555';
         });
         var postss = document.querySelectorAll('.post-box:hover');
-        postss.forEach(function(post){
+        postss.forEach(function (post) {
             post.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
         });
 
     }
+
+
+
     return (
         <div>
             <nav className="navbar">
@@ -76,34 +102,42 @@ const Layout2 = () => {
                     <img src='/yinyang.png' className='App-logo' alt='logo' />
                     <h1 className='h1'>The Conspiracy World</h1>
                     <button style={{
-                        marginLeft:"45px",
-                        
-                    }} type='button' onClick={()=>{
-                        navigate('/home?userid='+userid+'&usertype='+usertype);
+                        marginLeft: "45px",
+
+                    }} type='button' onClick={() => {
+                        navigate('/home?userid=' + userid + '&usertype=' + usertype);
                     }}><span className='emoji' id='emojii'>&#127968;</span></button>
                     <span style={{
-                        marginLeft:"15px"
+                        marginLeft: "15px"
                     }} type='button'><span className='emoji' id='emoji'>&#128269;</span><input id='search' type='search' style={{
-                        width:"80%",
-                        borderRadius:"15px",
-                        color:"black",
-                        padding:"3%",
-                        paddingLeft:"5%"
-                    }} placeholder={"Search..."} onKeyUp={(event)=>{
-                        if(event.keyCode === 13){
-                        var term = document.getElementById("search").value;
-                        navigate('/search?userid='+userid+'&usertype='+usertype+'&term='+term);
+                        width: "80%",
+                        borderRadius: "15px",
+                        color: "black",
+                        padding: "3%",
+                        paddingLeft: "5%"
+                    }} placeholder={"Search..."} onKeyUp={(event) => {
+                        if (event.keyCode === 13) {
+                            var term = document.getElementById("search").value;
+                            navigate('/search?userid=' + userid + '&usertype=' + usertype + '&term=' + term);
                         }
-                    }}/></span>
-                    <button type='button' onClick={()=>{
-                        navigate('/profile?userid='+userid+'&usertype='+usertype);
-                    }}><span className='emoji'><img src='/user.png' id='emojiii' width={35} style={{display:"inline",
-                    marginRight:"0.01%"}}></img></span></button>
+                    }} /></span>
+                    <button type='button' onClick={() => {
+                        navigate('/profile?userid=' + userid + '&usertype=' + usertype);
+                    }}><span className='emoji'><img src='/user.png' id='emojiii' width={35} style={{
+                        display: "inline",
+                        marginRight: "0.01%"
+                    }}></img></span></button>
+
+
 
                 </div>
 
                 <span className="right-section">
                     <ul className="nav-list">
+                        <button type='button' onClick={handleAuthButtonClick}>
+                            {isLoggedIn ? 'Log Out' : 'Log In'}
+                        </button>
+
                         {/* <button style={{
                             
                         }}  type='button' id='experti' onClick={()=>{
@@ -119,6 +153,7 @@ const Layout2 = () => {
                         <button id='night' type='button' onClick={themeChange}>
                             &#9728;
                         </button> */}
+
                     </ul>
                 </span>
             </nav >

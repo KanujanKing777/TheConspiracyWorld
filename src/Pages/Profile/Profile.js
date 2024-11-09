@@ -86,7 +86,7 @@ function Profile() {
     if (reference.endsWith(',')) {
       reference = reference.slice(0, -1);
     }
-    if (!title || title == " " || !content || content == " " || !reference || reference == " ") {
+    if (!title || title === " " || !content || content === " " || !reference || reference === " ") {
       alert('Please fill in all fields.');
       return;
     }

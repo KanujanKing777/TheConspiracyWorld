@@ -46,7 +46,7 @@ function Newpost() {
         }
         var content = document.getElementById('content').value;
         var title = document.getElementById('title').value;
-        if (!title || title == " " || !content || content == " " || !reference || reference == " ") {
+        if (!title || title === " " || !content || content === " " || !reference || reference === " ") {
             alert('Please fill in all fields.');
             return
         }

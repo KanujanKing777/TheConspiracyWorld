@@ -42,8 +42,10 @@ function Signup() {
         usertypes[doc.data()['Name']] = doc.data()['type'];
       });
       if (userdata[username] === password) {
-        
-        var str = '/home?userid='+usernameid[username]+'&usertype='+usertypes[username];
+        // Store user ID in localStorage as token
+        localStorage.setItem('token', usernameid[username]);
+
+        var str = '/home?userid=' + usernameid[username] + '&usertype=' + usertypes[username];
         navigate(str);
       }
       else {
@@ -57,7 +59,7 @@ function Signup() {
   useEffect(() => {
     // Set the document title when the component is mounted
     document.title = 'Log in';
-    
+
     // Optionally reset the title when the component is unmounted
     return () => {
       document.title = 'The Conspiracy World';
@@ -67,13 +69,13 @@ function Signup() {
 
   return (
     <div className='whole' style={{
-      padding:"1vh"
+      padding: "1vh"
     }}>
       <div className="signup-container">
         <form className="signup-form">
           <h2 style={{
-            textAlign:'center',
-            fontSize:'5vh'
+            textAlign: 'center',
+            fontSize: '5vh'
           }}>Log in</h2>
           <label htmlFor="username">Username</label>
           <input type="text" id="username" name="username"
@@ -88,7 +90,7 @@ function Signup() {
           <input type="password" id="password" name="password" className='formlogininput'
             value={password}
             style={{
-              color:"black"
+              color: "black"
             }}
             onChange={(e) => setPassword(e.target.value)}
             required />
