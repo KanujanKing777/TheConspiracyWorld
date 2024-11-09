@@ -118,6 +118,7 @@ function NewHome() {
   }
 
 
+
   return (
 
     <>
@@ -168,6 +169,7 @@ function NewHome() {
                             "Myth" : "Pending"
                     }
                   </div>
+
                 </div>
               </div>
               <div class="ad-container">
