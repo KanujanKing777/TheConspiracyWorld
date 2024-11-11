@@ -2,58 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, redirect, useNavigate } from 'react-router-dom';
 import './Singup.css'; // Import the CSS file
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
 import Notification from '../../components/Notification';
 import { collection, addDoc, getDocs } from "firebase/firestore";
+import { login } from "../authService";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyCXoH3sRAs9i0aPMRgNCHjNAvnWIzAaT3Y",
-  authDomain: "thespaceforconspiracy.firebaseapp.com",
-  projectId: "thespaceforconspiracy",
-  storageBucket: "thespaceforconspiracy.appspot.com",
-  messagingSenderId: "652964257001",
-  appId: "1:652964257001:web:461022b1e74763eff3a478"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-const firestore = getFirestore(app);
 function Signup() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   async function handleFormSubmit(e) {
     e.preventDefault();
 
     try {
-      const userdata = {};
-      const usernameid = {};
-      const usertypes = {};
-      const querySnapshot = await getDocs(collection(firestore, "users"));
-      querySnapshot.forEach((doc) => {
-        usernameid[doc.data()['Name']] = doc.id;
-        userdata[doc.data()['Name']] = doc.data()['Password'];
-        usertypes[doc.data()['Name']] = doc.data()['type'];
-      });
-      if (userdata[username] === password) {
-        // Store user ID in localStorage as token
-        localStorage.setItem('token', usernameid[username]);
-
-        var str = '/home?userid=' + usernameid[username] + '&usertype=' + usertypes[username];
-        navigate(str);
-      }
-      else {
-        alert('Wrong UserName or Password');
-      }
-
-    } catch (error) {
-      console.error('Error storing user details:', error.message);
+      await login(email, password);
+      alert("Login successful!");
+    } 
+    catch (error) {
+      alert("Error logging in: " + error.message);
     }
   }
   useEffect(() => {
@@ -78,14 +46,7 @@ function Signup() {
             fontSize: '5vh'
           }}>Log in</h2>
           <label htmlFor="username">Username</label>
-          <input type="text" id="username" name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className='formlogininput'
-            required />
-
-
-
+          <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} className='formlogininput' required />
           <label htmlFor="password">Password</label>
           <input type="password" id="password" name="password" className='formlogininput'
             value={password}
