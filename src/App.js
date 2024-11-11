@@ -4,6 +4,7 @@ import Home from './Static Pages/Home';
 import NoPage from './Static Pages/NoPage';
 import Singup from './Pages/Auth/Singup';
 import Login from './Pages/Auth/Login';
+import LoginWithGoogle from '.Pages/Auth/LoginWithGoogle';
 import Newpost from './Pages/New Post/newpost';
 import NewHome from './newHome';
 import Post from './Pages/Post/post';
@@ -13,6 +14,7 @@ import ExpertPage from './Pages/becomeAnExpert';
 import Profile from './Pages/Profile/Profile';
 import Search from './Pages/Search/Search';
 import Learnmore from './Static Pages/LearnMore';
+
 function App() {
   return (
     <Router>
@@ -21,6 +23,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path='/signup' element={<Singup />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/loginWithGoogle' element={<LoginWithGoogle />} />
         <Route path='/newpost' element={<Newpost />} />
         <Route path='/home' element={<NewHome />} />
         <Route path='/postExpert' element={<Post />} />
