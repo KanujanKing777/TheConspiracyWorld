@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './Singup.css'; // Import the CSS file
 // Import the functions you need from the SDKs you need
 import { useNavigate } from 'react-router-dom';
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 import { signUp } from "../authService";
 
