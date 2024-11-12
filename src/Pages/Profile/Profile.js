@@ -31,8 +31,10 @@ function Profile() {
   const [userData, setUserData] = useState(null);
   const [postData, setPostData] = useState([]);
   const [editPost, setEditPost] = useState(null);
-
-
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const handleEditProfile = () => {
+    setIsEditingProfile(true);
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -108,6 +110,22 @@ function Profile() {
     navigate(`/post${usertype === 'normal' ? '' : 'Expert'}?postid=${id}&userid=${userId}`);
   };
 
+
+  const handleProfileSubmit = async (e) => {
+    e.preventDefault();
+    const updatedData = {
+      Email: e.target.email?.value.trim(),
+      Name: e.target.name?.value.trim(),
+      Password: e.target.password?.value.trim(),
+      Type: e.target.type?.value,
+    };
+
+    const userRef = doc(firestore, 'users', userId);
+    await updateDoc(userRef, updatedData);
+    setUserData(updatedData);
+    setIsEditingProfile(false);
+  };
+
   return (
     <div>
       <Layout2 />
@@ -117,7 +135,29 @@ function Profile() {
           <div className="user-info">
             <h2>{userData.Name}</h2>
             <p>{userData.Email}</p>
+            <button onClick={handleEditProfile}>Edit Profile</button>
           </div>
+          {isEditingProfile && (
+            <form onSubmit={handleProfileSubmit} className="edit-profile-form">
+              <label>Name:</label>
+              <input type="text" name="name" defaultValue={userData?.Name || ''} required />
+
+              <label>Email:</label>
+              <input type="email" name="email" defaultValue={userData?.Email || ''} required />
+
+              <label>Password:</label>
+              <input type="password" name="password" placeholder="Enter new password" defaultValue={userData?.Password || ''} required />
+
+              <label>Type:</label>
+              <select name="type" defaultValue={userData?.Type || 'normal'} required>
+                <option value="normal">Normal</option>
+                <option value="expert">Expert</option>
+              </select>
+
+              <button type="submit" className="save-button">Save Changes</button>
+              <button type="button" className="cancel-button" onClick={() => setIsEditingProfile(false)}>Cancel</button>
+            </form>
+          )}
           <div id='postsection' className="placeholder-content">
             {postData.length > 0 ? (
               postData.map((box) => (
