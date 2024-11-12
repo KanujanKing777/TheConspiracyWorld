@@ -3,20 +3,20 @@ import './Singup.css'; // Import the CSS file
 // Import the functions you need from the SDKs you need
 import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from "firebase/firestore";
-import { signUp } from "../authService";
+import { signUp } from "../../authService";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-  const handleSignUp = async () => {
-    try {
-      await signUp(email, password, username);
-      alert("Sign-up successful!");
-    } catch (error) {
-      alert("Error signing up: " + error.message);
-    }
-  };
-}
+// const handleSignUp = async () => {
+//   try {
+//     await signUp(email, password, username);
+//     alert("Sign-up successful!");
+//   } catch (error) {
+//     alert("Error signing up: " + error.message);
+//   }
+// };
+
 
 function Signup() {
   const navigate = useNavigate();
@@ -38,12 +38,12 @@ function Signup() {
 
       if (password === passwordConfirm) {
         try {
-        await signUp(email, password, username);
+          await signUp(email, password, username);
           alert("Sign-up successful!");
-        }   
+        }
         catch (error) {
           alert("Error signing up: " + error.message);
-        });
+        }
 
         navigate('/login');
       }

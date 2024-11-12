@@ -1,5 +1,5 @@
 import React from "react";
-import { loginWithGoogle } from "../authService";
+import { loginWithGoogle } from "../../authService";
 
 function GoogleSignIn() {
   const handleGoogleSignIn = async () => {

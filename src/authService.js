@@ -1,6 +1,7 @@
 import { auth, googleProvider } from "./firebaseConfig";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
+const db = getFirestore();
 
 // Sign up with email and password
 export const signUp = async (email, password, username) => {

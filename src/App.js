@@ -4,7 +4,7 @@ import Home from './Static Pages/Home';
 import NoPage from './Static Pages/NoPage';
 import Singup from './Pages/Auth/Singup';
 import Login from './Pages/Auth/Login';
-import LoginWithGoogle from '.Pages/Auth/LoginWithGoogle';
+import LoginWithGoogle from './Pages/Auth/LoginWithGoogle';
 import Newpost from './Pages/New Post/newpost';
 import NewHome from './newHome';
 import Post from './Pages/Post/post';
