@@ -1,0 +1,11 @@
+Fonts:
+Orbitron
+Nunito
+Shantell sans
+
+Colours:
+background - #00000
+text - #CDCDCD
+accent - #D9984A
+
+All fonts available at google fonts.
